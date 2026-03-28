@@ -13,7 +13,7 @@ public class ChoiceSystem : MonoBehaviour
     private Choice[] currentChoices;
 
     private Coroutine choiceTimerCoroutine;
-    [SerializeField] private TextMeshProUGUI timerText;
+    public TextMeshProUGUI timerText;
     [SerializeField] private float choiceTimeLimit = 5f;
 
     // show a timer here

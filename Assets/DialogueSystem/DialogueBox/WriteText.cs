@@ -33,7 +33,7 @@ public class WriteText : MonoBehaviour
     // This gives us control on when to start the conversation for now
     private void OnEnable()
     {
-        print("Enabled"); // this works
+        //print("Enabled"); // this works
         // start conversation
         state = State.TALKING;
         StartNodeConversation(startNode);
@@ -89,6 +89,14 @@ public class WriteText : MonoBehaviour
         currentNode = node;
         state = State.TALKING;
         NodeTypingCoroutine = StartCoroutine(TypeNodeText(node.convo.convoText));
+    }
+
+    public void EndConversation()
+    {
+        StopCoroutine(NodeTypingCoroutine);
+        textPanel.gameObject.SetActive(false);
+        choiceSysRef.timerText.text = "";
+        choiceSysRef.gameObject.SetActive(false);
     }
 
     private IEnumerator TypeNodeText(string text)

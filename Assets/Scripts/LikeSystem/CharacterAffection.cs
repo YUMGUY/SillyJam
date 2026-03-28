@@ -13,6 +13,8 @@ public class CharacterAffection : MonoBehaviour
     [SerializeField] private float spacing = 100f; // UI spacing (pixels)
     List<RawImage> stages = new List<RawImage>();
     [SerializeField] private int currentStageIndex = 0;
+
+    public RhythmGame rhythmBoard;
     public enum PersonState {
         Neutral, Hate, Like
     }
@@ -29,6 +31,7 @@ public class CharacterAffection : MonoBehaviour
             stages.Add(stage.GetComponent<RawImage>());
         }
 
+        GameManager.Instance.StartRhythmGame();
     }
 
     // Update is called once per frame
@@ -46,10 +49,10 @@ public class CharacterAffection : MonoBehaviour
         if(currentStageIndex == stages.Count - 1)
         {
             print("stage is done");
+            GameManager.Instance.StopRhythmGame();
+            GameManager.Instance.GameOver();
         }
 
         currentStageIndex++;
-
-        
     }
 }
