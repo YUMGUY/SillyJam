@@ -96,6 +96,7 @@ public class WriteText : MonoBehaviour
         // Reset State of TextBox
         textPanel.text = "";
         state = State.TALKING;
+
         // Choice System 
         choicesPresent = currentNode.convo.ShouldLeadToChoice;
 
@@ -136,10 +137,10 @@ public class WriteText : MonoBehaviour
             }
         }
 
-        // depends on choices present set before the typing starts
+        // Depends on choices present set before the typing starts
         if (choicesPresent == true)
         {
-            print("show choice");
+            //print("show choice");
             choiceSysRef.DisplayChoices(currentNode.convo.possibleChoices.Length, currentNode.convo.possibleChoices);
             state = State.AWAITING_REPLY;
         }
