@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a816fc6dfe9b674a8e2d3be5a161600, type: 3}
-  m_Name: Test2
+  m_Name: Test5
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBox
   convo:
-    convoText: test 2 im talking here
+    convoText: final test node tttt
     character: {fileID: 11400000, guid: 1f4264b0d5ed18e4e925c3f1f7b32f65, type: 2}
     autoAdvance: 0
     ShouldPlayTextSound: 0
@@ -32,10 +32,8 @@ MonoBehaviour:
     durationShake_: 0
     ShouldPlayFlash: 0
     FlashAtWhatCharIdx: 0
-    ShouldLeadToChoice: 1
-    possibleChoices:
-    - {fileID: 11400000, guid: 0e694f610db89c84aa87572c0d4c7c29, type: 2}
-    - {fileID: 11400000, guid: d7f5900abeede4143a3b2a4c1111d6e0, type: 2}
+    ShouldLeadToChoice: 0
+    possibleChoices: []
     nextNodeInheritCurrent: 0
-    nextNode: {fileID: 11400000, guid: 653c909682709e94ebe198363c0bfdb2, type: 2}
-    isEndNode: 0
+    nextNode: {fileID: 0}
+    isEndNode: 1

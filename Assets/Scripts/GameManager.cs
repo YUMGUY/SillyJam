@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private int numPeopleLike = 0;
+    private int maxNumPeople = 3;
 
     public GameState State;
     private void Awake()
@@ -26,6 +28,16 @@ public class GameManager : MonoBehaviour
     public void UpdateGameState(GameState newState)
     {
         State = newState;
+    }
+
+    public void AddALike()
+    {
+        ++numPeopleLike;
+    }
+
+    public void GameOver()
+    {
+        // open the game over scene if reached end?
     }
 
 }

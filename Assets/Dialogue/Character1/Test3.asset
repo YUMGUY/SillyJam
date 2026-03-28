@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBox
   convo:
-    convoText: test 3 lol end node
+    convoText: test 3 lol
     character: {fileID: 11400000, guid: 1f4264b0d5ed18e4e925c3f1f7b32f65, type: 2}
     autoAdvance: 0
     ShouldPlayTextSound: 0
@@ -32,8 +32,10 @@ MonoBehaviour:
     durationShake_: 0
     ShouldPlayFlash: 0
     FlashAtWhatCharIdx: 0
-    ShouldLeadToChoice: 0
-    possibleChoices: []
+    ShouldLeadToChoice: 1
+    possibleChoices:
+    - {fileID: 11400000, guid: 896cea9d86205ec48a664ccf128f672a, type: 2}
+    - {fileID: 11400000, guid: 71442efc103cc464fabc1278c01e4605, type: 2}
     nextNodeInheritCurrent: 0
     nextNode: {fileID: 0}
-    isEndNode: 1
+    isEndNode: 0

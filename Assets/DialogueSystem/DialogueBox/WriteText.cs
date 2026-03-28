@@ -20,14 +20,14 @@ public class WriteText : MonoBehaviour
     [SerializeField] private float defaultTypingSpeed;
     [Header("Choice System Factor")]
     public bool choicesPresent;
-    //public NodeChoiceSystem choiceSysRef;
+    public ChoiceSystem choiceSysRef;
 
     private Coroutine NodeTypingCoroutine = null;
     private State state = State.TALKING;
 
     private enum State
     {
-        TALKING, COMPLETED, AWAITING_REPLY, FINISHED_TALKING
+        TALKING, COMPLETED, AWAITING_REPLY, FINISHED_CONVERSATION
     }
     
     // This gives us control on when to start the conversation for now
@@ -87,6 +87,7 @@ public class WriteText : MonoBehaviour
     {
         // provides choices a way to start a new path
         currentNode = node;
+        state = State.TALKING;
         NodeTypingCoroutine = StartCoroutine(TypeNodeText(node.convo.convoText));
     }
 
@@ -138,7 +139,8 @@ public class WriteText : MonoBehaviour
         // depends on choices present set before the typing starts
         if (choicesPresent == true)
         {
-            // choiceSysRef.DisplayChoices(currentNode.convo.possibleChoices.Length, currentNode.convo.possibleChoices);
+            print("show choice");
+            choiceSysRef.DisplayChoices(currentNode.convo.possibleChoices.Length, currentNode.convo.possibleChoices);
             state = State.AWAITING_REPLY;
         }
 
@@ -163,7 +165,7 @@ public class WriteText : MonoBehaviour
         else
         {
             print("end of dialogue for now");
-            state = State.FINISHED_TALKING;
+            state = State.FINISHED_CONVERSATION;
             // create function to invoke stored coroutines, switch system, etc
         }
     }
