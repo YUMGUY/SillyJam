@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: ed9f7be53379f2342bd2b53abe3ce2c5
+guid: dedc32c7eac7a1a4aa903abe9751cf72
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3544184874031592617
-    second: Sonee-TITLE_0
-  - first:
-      213: 4856467876472827396
-    second: Sonee-TITLE_1
-  - first:
-      213: 2314229824391692547
-    second: Sonee-TITLE_2
-  - first:
-      213: -3970524649443027952
-    second: Sonee-TITLE_3
+      213: 9153873571592200711
+    second: CharSprite-GOOD_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,89 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sonee-TITLE_0
+      name: CharSprite-GOOD_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 30
-        width: 437
-        height: 241
+        x: 28
+        y: 44
+        width: 844
+        height: 596
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 75bc80d82a680dec0800000000000000
-      internalID: -3544184874031592617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sonee-TITLE_1
-      rect:
-        serializedVersion: 2
-        x: 106
-        y: 31
-        width: 283
-        height: 186
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 40e22409dc3a56340800000000000000
-      internalID: 4856467876472827396
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sonee-TITLE_2
-      rect:
-        serializedVersion: 2
-        x: 398
-        y: 31
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3014b7393cbcd1020800000000000000
-      internalID: 2314229824391692547
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sonee-TITLE_3
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 31
-        width: 23
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 014140a3edcd5e8c0800000000000000
-      internalID: -3970524649443027952
+      spriteID: 702e6999387190f70800000000000000
+      internalID: 9153873571592200711
       vertices: []
       indices: 
       edges: []
@@ -213,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 855be9ca1cfe6e944b1a2ee7157ce8d0
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -221,14 +146,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":2,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Sonee-TITLE_0: -3544184874031592617
-      Sonee-TITLE_1: 4856467876472827396
-      Sonee-TITLE_2: 2314229824391692547
-      Sonee-TITLE_3: -3970524649443027952
+      CharSprite-GOOD_0: 9153873571592200711
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

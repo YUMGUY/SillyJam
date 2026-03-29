@@ -32,10 +32,8 @@ MonoBehaviour:
     durationShake_: 0
     ShouldPlayFlash: 0
     FlashAtWhatCharIdx: 0
-    ShouldLeadToChoice: 1
-    possibleChoices:
-    - {fileID: 11400000, guid: 0e694f610db89c84aa87572c0d4c7c29, type: 2}
-    - {fileID: 11400000, guid: d7f5900abeede4143a3b2a4c1111d6e0, type: 2}
+    ShouldLeadToChoice: 0
+    possibleChoices: []
     nextNodeInheritCurrent: 0
-    nextNode: {fileID: 11400000, guid: 653c909682709e94ebe198363c0bfdb2, type: 2}
+    nextNode: {fileID: 11400000, guid: 34249679aadb16a47b8e01e8cb6346c3, type: 2}
     isEndNode: 0

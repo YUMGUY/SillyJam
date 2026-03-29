@@ -18,19 +18,30 @@ public class ChoiceSystem : MonoBehaviour
 
     [SerializeField] private float choiceTimeLimit = 5f;
 
+    private Sprite baseCharacterSprite;
+    private SpriteRenderer playerSR;
+    [SerializeField] private Sprite characterThink;
+    [SerializeField] private Sprite playerBadEmote;
+    [SerializeField] private Sprite playerGoodEmote;
+
     // show a timer here
     void Start()
     {
         // Make sure debugging text doesnt show
         timerText.text = "";
+        playerSR = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>();
+        baseCharacterSprite = playerSR.sprite;
     }
 
     private void Update()
     {
     }
 
+    // When time runs out, automatically fail the current "stage" of the conversation
     IEnumerator ChoiceTimer()
     {
+        playerSR.sprite = characterThink;
+        // HERE could be character conversation partner reset back to base pose during choice selection
         int timeRemaining = Mathf.CeilToInt(choiceTimeLimit);
         timerText.text = timeRemaining.ToString();
         ChoiceOrimage.gameObject.SetActive(true);
@@ -46,6 +57,41 @@ public class ChoiceSystem : MonoBehaviour
         timerText.text = ""; // clear or show "0" if you want
 
         ChoosePath(null);
+    }
+
+    // For now depend on this function for the Conversation Partner Emotion (should be in write text)
+    private IEnumerator PlayerAndCharacterReact(bool madeCorrectChoice)
+    {
+        // our conversation partner
+        SpriteRenderer characterSR = character.gameObject.GetComponent<SpriteRenderer>();
+        if (!madeCorrectChoice)
+        {
+            playerSR.sprite = playerBadEmote;
+            characterSR.sprite = character.badEmote;
+            yield return new WaitForSeconds(2);
+
+            if(choiceTimerCoroutine == null)
+            {
+                playerSR.sprite = baseCharacterSprite;
+                //characterSR.sprite = character.baseEmote;
+            }
+            characterSR.sprite = character.baseEmote;
+        }
+        else
+        {
+            playerSR.sprite = playerGoodEmote;
+            characterSR.sprite = character.goodEmote;
+            yield return new WaitForSeconds(2);
+
+            if (choiceTimerCoroutine == null)
+            {
+                playerSR.sprite = baseCharacterSprite;
+               // characterSR.sprite = character.baseEmote;
+            }
+            characterSR.sprite = character.baseEmote;
+        }
+
+        yield return null;
     }
 
     public void DisplayChoices(int numChoices, Choice[] choices)
@@ -79,11 +125,6 @@ public class ChoiceSystem : MonoBehaviour
         // reset choice system
         //print(chosenPathNode.pathToTake.name + " was chosen from " + chosenPathNode.name);
        
-        //// change emotion
-        //if (chosenPathNode.changeEmotionValue == true)
-        //{
-        //    BattleManager.instance.ChangeEmotion(chosenPathNode.emotionValue, chosenPathNode.emotion);
-        //}
         //// play sound effect later 
         //if (chosenPathNode.emotionSFX != null)
         //{
@@ -110,9 +151,12 @@ public class ChoiceSystem : MonoBehaviour
 
             ChoiceOrimage.gameObject.SetActive(false);
             timerText.text = "";
+            StartCoroutine(PlayerAndCharacterReact(false));
+
             return;
         }
 
+        // Play appropriate Character Reaction
         if(chosenPathNode.isCorrectChoice)
         {
             character.SetNextStage(Color.green);
@@ -128,6 +172,8 @@ public class ChoiceSystem : MonoBehaviour
             choiceTimerCoroutine = null;
         }
 
+        StartCoroutine(PlayerAndCharacterReact(chosenPathNode.isCorrectChoice));
+
         timerText.text = ""; // hide timer when choice is made
         dialogueRef.choicesPresent = false; // gives ability to continue
         //dialogueRef.StopTyping(); // BETTER SOLUTION???
@@ -142,11 +188,9 @@ public class ChoiceSystem : MonoBehaviour
 
     }
 
-    // atuomatic Fail of the stage
+    // automatic Fail of the stage
     public void SkipChoice()
     {
-       // character.numStages++;
         character.SetNextStage(Color.red);
     }
-
 }

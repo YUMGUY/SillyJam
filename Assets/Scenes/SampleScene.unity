@@ -268,6 +268,9 @@ MonoBehaviour:
   timerText: {fileID: 1541697855}
   ChoiceOrimage: {fileID: 1645280695}
   choiceTimeLimit: 5
+  characterThink: {fileID: -3292373421897121379, guid: 53cc28d86d513d84684dd2d05414646a, type: 3}
+  playerBadEmote: {fileID: 4082064224251181547, guid: 5e6284831fa76934a960f316425fb779, type: 3}
+  playerGoodEmote: {fileID: 9153873571592200711, guid: dedc32c7eac7a1a4aa903abe9751cf72, type: 3}
 --- !u!1 &295573786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,7 +1990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1939498117
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2027,7 +2030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2221,6 +2224,18 @@ PrefabInstance:
       propertyPath: spacing
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 492128609395884811, guid: fce4b5cc2ad401b4ea0c6c56de82c0dc, type: 3}
+      propertyPath: badEmote
+      value: 
+      objectReference: {fileID: 7371581467320048915, guid: 4b0695ca227d0f347b4f881e96199bc5, type: 3}
+    - target: {fileID: 492128609395884811, guid: fce4b5cc2ad401b4ea0c6c56de82c0dc, type: 3}
+      propertyPath: baseEmote
+      value: 
+      objectReference: {fileID: 3177175766042555401, guid: 51403c19ad1ddfa4d9048886c09486d2, type: 3}
+    - target: {fileID: 492128609395884811, guid: fce4b5cc2ad401b4ea0c6c56de82c0dc, type: 3}
+      propertyPath: goodEmote
+      value: 
+      objectReference: {fileID: 1875980263407506034, guid: 513e3ea25c6d13147925b6d666eebd12, type: 3}
     - target: {fileID: 492128609395884811, guid: fce4b5cc2ad401b4ea0c6c56de82c0dc, type: 3}
       propertyPath: rhythmBoard
       value: 

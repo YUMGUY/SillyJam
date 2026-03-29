@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a816fc6dfe9b674a8e2d3be5a161600, type: 3}
-  m_Name: Test3
+  m_Name: test3-padding
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBox
   convo:
-    convoText: test 3 lol this is a test node.
+    convoText: This is the test 3 padding sentence. This will take a little bit to
+      write.
     character: {fileID: 11400000, guid: 1f4264b0d5ed18e4e925c3f1f7b32f65, type: 2}
     autoAdvance: 0
     ShouldPlayTextSound: 0
-    typingSpeed: 0
+    typingSpeed: 0.025
     textColor_: {r: 0, g: 0, b: 0, a: 1}
     inputFontSize: 0
     textisBold: 0
@@ -32,8 +33,10 @@ MonoBehaviour:
     durationShake_: 0
     ShouldPlayFlash: 0
     FlashAtWhatCharIdx: 0
-    ShouldLeadToChoice: 0
-    possibleChoices: []
+    ShouldLeadToChoice: 1
+    possibleChoices:
+    - {fileID: 11400000, guid: 896cea9d86205ec48a664ccf128f672a, type: 2}
+    - {fileID: 11400000, guid: 71442efc103cc464fabc1278c01e4605, type: 2}
     nextNodeInheritCurrent: 0
-    nextNode: {fileID: 11400000, guid: a0362e0cea4fd7c40a55657f52b1cd9f, type: 2}
+    nextNode: {fileID: 0}
     isEndNode: 0

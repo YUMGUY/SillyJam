@@ -14,6 +14,10 @@ public class CharacterAffection : MonoBehaviour
     List<Image> stages = new List<Image>();
     [SerializeField] private int currentStageIndex = 0;
 
+    public Sprite baseEmote;
+    public Sprite badEmote;
+    public Sprite goodEmote;
+
     public RhythmGame rhythmBoard;
     public enum PersonState {
         Neutral, Hate, Like

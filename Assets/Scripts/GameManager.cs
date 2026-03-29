@@ -66,29 +66,34 @@ public class GameManager : MonoBehaviour
             Destroy(arrow);
         }
 
-        Debug.Log($"Cleaned up {arrows.Length} arrows.");
+       // Debug.Log($"Cleaned up {arrows.Length} arrows.");
     }
 
     public void GameOver()
     {
-        // open the game over scene if reached end?
-
         switch(State)
         {
             case GameState.Ending:
-                Debug.Log("Game is over normally bc stages are completed.");
+                Debug.Log("Game is over normally bc stages are completed: " + State.ToString());
                 break;
             case GameState.Died:
                 Debug.Log("Game is over bc you died.");
                 break;
         }
 
-        // Load Good Ending Scene
         if(State == GameState.Ending && numPeopleLike == maxNumPeople)
         {
             State = GameState.GoodEnding;
-            SceneManager.LoadScene(1);
+            
         }
+        else if((State == GameState.Ending || State == GameState.Died) && numPeopleLike != maxNumPeople)
+        {
+            State = GameState.BadEnding;
+        }
+
+        // wait like 3 seconds for now? Do not know agreed way to get to the gameover scene/screen
+        // GameOver Scene
+        SceneManager.LoadScene(1);
     }
 
 

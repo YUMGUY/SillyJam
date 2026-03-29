@@ -197,7 +197,7 @@ public class WriteText : MonoBehaviour
         // check Character Name & Character Name Color & textColor
         try
         {
-            namePanel.text = currentNode.convo.character.speakerName;
+            namePanel.text = currentNode.convo.character.speakerName; // RIGHT NOW WE HAVE AN IMAGE FOR THE NAME SO CODE NOT NEEDED?
             namePanel.color = currentNode.convo.character.nameColor;
             if (currentNode.convo.textColor_.a <= 0)
             {
