@@ -10,8 +10,8 @@ public class CharacterAffection : MonoBehaviour
     public PersonState personState = PersonState.Neutral;
     [SerializeField] private GameObject talkingStageUI;
     [SerializeField] private RectTransform canvasParent; // your canvas or panel
-    [SerializeField] private float spacing = 100f; // UI spacing (pixels)
-    List<RawImage> stages = new List<RawImage>();
+    [SerializeField] private float spacing = 120f; // UI spacing (pixels)
+    List<Image> stages = new List<Image>();
     [SerializeField] private int currentStageIndex = 0;
 
     public RhythmGame rhythmBoard;
@@ -26,9 +26,9 @@ public class CharacterAffection : MonoBehaviour
             GameObject stage = Instantiate(talkingStageUI, canvasParent);
 
             RectTransform rect = stage.GetComponent<RectTransform>();
-            rect.anchoredPosition = new Vector2(-300f, -spacing * i);
+            rect.anchoredPosition = new Vector2(-888f, (-spacing * i) + (-206)); // PROBABLY JUST GET A TRASNFORM BUT THIS WILL DO FOR NOW
 
-            stages.Add(stage.GetComponent<RawImage>());
+            stages.Add(stage.GetComponent<Image>());
         }
 
         GameManager.Instance.StartRhythmGame();
@@ -46,13 +46,36 @@ public class CharacterAffection : MonoBehaviour
             return;
 
         stages[currentStageIndex].color = color;
+
+        // Reached final stage. Clean everything up. Will use a ienumerator for changing scenes later
         if(currentStageIndex == stages.Count - 1)
         {
-            print("stage is done");
             GameManager.Instance.StopRhythmGame();
+            GameManager.Instance.UpdateGameState(GameState.Ending);
+            if(DoesCharacterLikePlayer())
+            {
+                GameManager.Instance.AddALike();
+            }
             GameManager.Instance.GameOver();
         }
 
         currentStageIndex++;
+    }
+
+    public bool DoesCharacterLikePlayer()
+    {
+        int green = 0;
+        int red = 0;
+        foreach (Image stage in stages)
+        {
+            if(stage.color == Color.green)
+            {
+                ++green;
+            }
+            else { ++red; }
+        }
+
+
+        return green > red;
     }
 }

@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     private int numPeopleLike = 0;
-    private int maxNumPeople = 3;
+    private int maxNumPeople = 1;
 
     public GameState State;
 
@@ -71,23 +72,41 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         // open the game over scene if reached end?
-        Debug.Log("Game is over.");
+
+        switch(State)
+        {
+            case GameState.Ending:
+                Debug.Log("Game is over normally bc stages are completed.");
+                break;
+            case GameState.Died:
+                Debug.Log("Game is over bc you died.");
+                break;
+        }
+
+        // Load Good Ending Scene
+        if(State == GameState.Ending && numPeopleLike == maxNumPeople)
+        {
+            State = GameState.GoodEnding;
+            SceneManager.LoadScene(1);
+        }
     }
+
+
 
     public void NoteMissed()
     {
-        Debug.Log("Missed note");
+        //Debug.Log("Missed note");
         currentHealth -= damagePerMiss;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthUI();
 
-        // Bad Ending? or go straight to judging
+        // Bad Ending
         if (currentHealth <= 0)
         {
             WriteText dialogue = FindAnyObjectByType<WriteText>();
             dialogue.EndConversation();
             StopRhythmGame();
-            State = GameState.Ending;
+            State = GameState.Died;
             GameOver();
         }
     }
@@ -121,6 +140,7 @@ public enum GameState
 {
     InProgress,
     Ending,
+    Died,
     BadEnding,
     GoodEnding,
     TrueEnding

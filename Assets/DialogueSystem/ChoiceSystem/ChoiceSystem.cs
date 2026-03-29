@@ -14,6 +14,8 @@ public class ChoiceSystem : MonoBehaviour
 
     private Coroutine choiceTimerCoroutine;
     public TextMeshProUGUI timerText;
+    public Image ChoiceOrimage;
+
     [SerializeField] private float choiceTimeLimit = 5f;
 
     // show a timer here
@@ -31,7 +33,7 @@ public class ChoiceSystem : MonoBehaviour
     {
         int timeRemaining = Mathf.CeilToInt(choiceTimeLimit);
         timerText.text = timeRemaining.ToString();
-       
+        ChoiceOrimage.gameObject.SetActive(true);
         while (timeRemaining > 0)
         {
             timerText.text = timeRemaining.ToString();
@@ -49,15 +51,16 @@ public class ChoiceSystem : MonoBehaviour
     public void DisplayChoices(int numChoices, Choice[] choices)
     {
         currentChoices = choices; // copy
-        float startY = -150f;
+        float startY = -416f;
+        float startX = 40;
         for (int i = 0; i < choices.Length; ++i)
         {
             int dindex = i;
             Button buttonMade = Instantiate(choiceButtonPrefab, transform);
             buttonMade.onClick.AddListener(delegate { ChoosePath(choices[dindex]); });
             // position buttons
-            buttonMade.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, startY);
-            startY += 150;
+            buttonMade.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(40 + startX, startY);
+            startX += 460;
             // set button text
             buttonMade.GetComponentInChildren<TextMeshProUGUI>().text = choices[i].choiceText;
         }
@@ -105,6 +108,8 @@ public class ChoiceSystem : MonoBehaviour
                 Destroy(choice.gameObject);
             }
 
+            ChoiceOrimage.gameObject.SetActive(false);
+            timerText.text = "";
             return;
         }
 
@@ -128,11 +133,13 @@ public class ChoiceSystem : MonoBehaviour
         //dialogueRef.StopTyping(); // BETTER SOLUTION???
         dialogueRef.StartNodeConversation(chosenPathNode.pathToTake);
 
-
         foreach (Transform choice in transform)
         {
             Destroy(choice.gameObject);
         }
+
+        ChoiceOrimage.gameObject.SetActive(false);
+
     }
 
     // atuomatic Fail of the stage

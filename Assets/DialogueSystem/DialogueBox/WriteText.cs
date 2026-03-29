@@ -201,7 +201,8 @@ public class WriteText : MonoBehaviour
             namePanel.color = currentNode.convo.character.nameColor;
             if (currentNode.convo.textColor_.a <= 0)
             {
-                textPanel.color = Color.white;
+                print("There was a transparent color");
+                textPanel.color = Color.black;
             }
             else
             {

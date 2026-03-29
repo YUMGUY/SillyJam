@@ -18,7 +18,7 @@ MonoBehaviour:
     autoAdvance: 0
     ShouldPlayTextSound: 0
     typingSpeed: 0
-    textColor_: {r: 0, g: 0, b: 0, a: 0}
+    textColor_: {r: 0, g: 0, b: 0, a: 1}
     inputFontSize: 0
     textisBold: 0
     textisWavy: 0

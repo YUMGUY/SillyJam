@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d202d9a077818b41b08cd255ab758ec, type: 3}
   m_Name: Character1
   m_EditorClassIdentifier: Assembly-CSharp::Speaker
-  speakerName: Character1
+  speakerName: Sonee
   nameColor: {r: 0, g: 0, b: 0, a: 1}
   numLabel: 0
+  speakerSprite: {fileID: 6031951928769091308, guid: b900a6f18fbfe7d46a3b255bfee0d955, type: 3}
+  nameImg: {fileID: 0}

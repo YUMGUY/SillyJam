@@ -5,13 +5,15 @@ public class RhythmGame : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    public Transform[] spawnTransforms;
+    public Transform[] spawnTransforms; // parallel array with arrow sprites
+    public Sprite[] arrowSprites;
     public float arrowSpeed = 5f;
     public float spawnInterval = 1f; // spawn every second by default
     public GameObject arrow;
 
     private Coroutine spawnRoutine;
     private Key[] keysToPress = { Key.LeftArrow, Key.UpArrow, Key.DownArrow, Key.RightArrow };
+    
     void Start()
     {
         if(arrow == null)
@@ -28,12 +30,13 @@ public class RhythmGame : MonoBehaviour
 
     }
 
-    public void SpawnArrow(Vector3 spawnPosition, Key keyToPress)
+    public void SpawnArrow(Vector3 spawnPosition, Key keyToPress, Sprite sprite)
     {
         GameObject spawnedArrow = Instantiate(arrow, spawnPosition, Quaternion.identity);
         ArrowBehavior arrowScript = spawnedArrow.GetComponent<ArrowBehavior>();
         arrowScript.speed = arrowSpeed;
         arrowScript.keyToPress = keyToPress;
+        arrowScript.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
     public void StartSpawning()
@@ -54,7 +57,8 @@ public class RhythmGame : MonoBehaviour
             int index = Random.Range(0, spawnTransforms.Length);
             Transform spawnPoint = spawnTransforms[index];
             Key key = keysToPress[index];
-            SpawnArrow(spawnPoint.position, key);
+            Sprite spriteToUse = arrowSprites[index];
+            SpawnArrow(spawnPoint.position, key, spriteToUse);
 
             yield return new WaitForSeconds(spawnInterval);
         }

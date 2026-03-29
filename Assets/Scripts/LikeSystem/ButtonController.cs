@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class ButtonController : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
+    [SerializeField]private SpriteRenderer spriteRenderer;
 
     public Key keyToPress; // NEW enum (not KeyCode)
 
@@ -16,12 +16,12 @@ public class ButtonController : MonoBehaviour
     {
         if (Keyboard.current[keyToPress].wasPressedThisFrame)
         {
-            spriteRenderer.color = Color.yellow;
+            spriteRenderer.color = Color.white;
         }
 
         if (Keyboard.current[keyToPress].wasReleasedThisFrame)
         {
-            spriteRenderer.color = Color.black;
+            spriteRenderer.color = Color.clear;
         }
     }
 }
