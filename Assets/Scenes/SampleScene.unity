@@ -988,6 +988,7 @@ MonoBehaviour:
   arrowSpeed: 4
   spawnInterval: 1
   arrow: {fileID: 8666916561371551337, guid: fdee78005731afd41ae5196ed7964c1e, type: 3}
+  timer: 0
   timeIntervalToSpeedUp: 12
 --- !u!1 &495747920 stripped
 GameObject:
