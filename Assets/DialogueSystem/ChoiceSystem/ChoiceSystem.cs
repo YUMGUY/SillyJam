@@ -29,6 +29,7 @@ public class ChoiceSystem : MonoBehaviour
     {
         // Make sure debugging text doesnt show
         timerText.text = "";
+        timerText.gameObject.SetActive(false);
         playerSR = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>();
         baseCharacterSprite = playerSR.sprite;
     }
@@ -43,18 +44,18 @@ public class ChoiceSystem : MonoBehaviour
         playerSR.sprite = characterThink;
         // HERE could be character conversation partner reset back to base pose during choice selection
         int timeRemaining = Mathf.CeilToInt(choiceTimeLimit);
-        timerText.text = timeRemaining.ToString();
+       // timerText.text = timeRemaining.ToString();
         ChoiceOrimage.gameObject.SetActive(true);
         while (timeRemaining > 0)
         {
-            timerText.text = timeRemaining.ToString();
+            //timerText.text = timeRemaining.ToString();
 
             yield return new WaitForSeconds(1f);
 
             timeRemaining--;
         }
 
-        timerText.text = ""; // clear or show "0" if you want
+       // timerText.text = ""; // clear or show "0" if you want
 
         ChoosePath(null);
     }
@@ -134,6 +135,7 @@ public class ChoiceSystem : MonoBehaviour
         // Called automatically by coroutine if no choice is made?
         if(chosenPathNode == null)
         {
+            GameManager.Instance.audioManager.PlayIncorrect();
             character.SetNextStage(Color.red);
             foreach(Choice choice in currentChoices)
             {
@@ -150,7 +152,7 @@ public class ChoiceSystem : MonoBehaviour
             }
 
             ChoiceOrimage.gameObject.SetActive(false);
-            timerText.text = "";
+            //timerText.text = "";
             StartCoroutine(PlayerAndCharacterReact(false));
 
             return;
@@ -176,7 +178,7 @@ public class ChoiceSystem : MonoBehaviour
 
         StartCoroutine(PlayerAndCharacterReact(chosenPathNode.isCorrectChoice));
 
-        timerText.text = ""; // hide timer when choice is made
+        //timerText.text = ""; // hide timer when choice is made
         dialogueRef.choicesPresent = false; // gives ability to continue
         //dialogueRef.StopTyping(); // BETTER SOLUTION???
         dialogueRef.StartNodeConversation(chosenPathNode.pathToTake);

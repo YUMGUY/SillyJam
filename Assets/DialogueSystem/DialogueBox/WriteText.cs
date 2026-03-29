@@ -23,8 +23,11 @@ public class WriteText : MonoBehaviour
     public ChoiceSystem choiceSysRef;
 
     private Coroutine NodeTypingCoroutine = null;
-    private State state = State.TALKING;
+    [SerializeField] private State state = State.TALKING;
 
+    [Header("Character we talk to")]
+    public GameObject conversationPartner;
+    public Sprite baseConversationPartnerSprite;
     private enum State
     {
         TALKING, COMPLETED, AWAITING_REPLY, FINISHED_CONVERSATION
@@ -117,11 +120,11 @@ public class WriteText : MonoBehaviour
         //    // start animation coroutine that would clear ui 
         //    yield return StartCoroutine(PlaySpecialAnimation(currentNode.convo.clipToPlay));
         //}
+        yield return new WaitUntil(() => GameManager.Instance != null
+                             && GameManager.Instance.audioManager != null);
         while (state != State.COMPLETED)
         {
-            // add audio clip of text here
-            //PlaySoundFX(charIndex);
-
+            GameManager.Instance.audioManager.PlayCharacterVoice();
             // play animation for character
             //try
             //{
@@ -138,6 +141,8 @@ public class WriteText : MonoBehaviour
 
             textPanel.text += text[charIndex];
             yield return new WaitForSeconds(currentTypingSpeed);
+
+            // wpnt reach this if gaemover coroutine executes first
             if (++charIndex == text.Length)
             {
                 yield return new WaitForSeconds(timeUntilNextDialogue);
@@ -145,6 +150,10 @@ public class WriteText : MonoBehaviour
             }
         }
 
+        if(currentNode.rhythmGameStart)
+        {
+            GameManager.Instance.StartRhythmGame();
+        }
         // Depends on choices present set before the typing starts
         if (choicesPresent == true)
         {
@@ -197,8 +206,8 @@ public class WriteText : MonoBehaviour
         // check Character Name & Character Name Color & textColor
         try
         {
-            namePanel.text = currentNode.convo.character.speakerName; // RIGHT NOW WE HAVE AN IMAGE FOR THE NAME SO CODE NOT NEEDED?
-            namePanel.color = currentNode.convo.character.nameColor;
+            //namePanel.text = currentNode.convo.character.speakerName; // RIGHT NOW WE HAVE AN IMAGE FOR THE NAME SO CODE NOT NEEDED?
+           // namePanel.color = currentNode.convo.character.nameColor;
             if (currentNode.convo.textColor_.a <= 0)
             {
                 print("There was a transparent color");
@@ -212,7 +221,7 @@ public class WriteText : MonoBehaviour
         catch
         {
             print("Error at: " + currentNode.name + " , has missing speaker");
-            namePanel.text = "???";
+           // namePanel.text = "???";
             namePanel.color = Color.white;
         }
         //// check Character Sprite
@@ -228,6 +237,29 @@ public class WriteText : MonoBehaviour
         //catch
         //{
         //    print("ERROR: Character Sprite Array for " + currentNode.name + " is empty");
+        //}
+
+        // THIS WILL BE DONE IN FUTURE POSSIBLY, CLASHES WITH CHARACTER AND PLAYER REACTION COROUTINE SO AVOIDING WHILE DOING THE SILLY GAME JAM
+        // simple charcter sprite change
+        //try
+        //{
+        //    if(conversationPartner != null)
+        //    {
+        //        SpriteRenderer spriteRenderer = conversationPartner.GetComponent<SpriteRenderer>();
+        //        if (currentNode.convo.emote != null)
+        //        {
+        //            spriteRenderer.sprite = currentNode.convo.emote;
+        //        }
+        //        else
+        //        {
+        //            spriteRenderer.sprite = baseConversationPartnerSprite;
+        //        }
+
+        //    }
+        //}
+        //catch
+        //{
+        //    print("ERROR: Character Sprite for " + currentNode.name);
         //}
 
     }

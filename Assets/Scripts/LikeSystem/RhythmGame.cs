@@ -46,7 +46,8 @@ public class RhythmGame : MonoBehaviour
 
     public void StopSpawning()
     {
-        StopCoroutine(spawnRoutine);
+        if(spawnRoutine != null)
+            StopCoroutine(spawnRoutine);
     }
 
     IEnumerator SpawnArrowsRandomly()

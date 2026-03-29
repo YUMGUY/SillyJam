@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,7 +36,7 @@ public class CharacterAffection : MonoBehaviour
             stages.Add(stage.GetComponent<Image>());
         }
 
-        GameManager.Instance.StartRhythmGame();
+        //GameManager.Instance.StartRhythmGame();
     }
 
     // Update is called once per frame
@@ -54,16 +55,30 @@ public class CharacterAffection : MonoBehaviour
         // Reached final stage. Clean everything up. Will use a ienumerator for changing scenes later
         if(currentStageIndex == stages.Count - 1)
         {
-            GameManager.Instance.StopRhythmGame();
-            GameManager.Instance.UpdateGameState(GameState.Ending);
-            if(DoesCharacterLikePlayer())
-            {
-                GameManager.Instance.AddALike();
-            }
-            GameManager.Instance.GameOver();
+            StartCoroutine(WaitUntilEndDialogueFinishes());
+            //GameManager.Instance.StopRhythmGame();
+            //GameManager.Instance.UpdateGameState(GameState.Ending);
+            //if(DoesCharacterLikePlayer())
+            //{
+            //    GameManager.Instance.AddALike();
+            //}
+            //GameManager.Instance.GameOver();
         }
 
         currentStageIndex++;
+    }
+
+    public IEnumerator WaitUntilEndDialogueFinishes()
+    {
+        yield return new WaitForSeconds(2f);
+        GameManager.Instance.StopRhythmGame();
+        GameManager.Instance.UpdateGameState(GameState.Ending);
+        if (DoesCharacterLikePlayer())
+        {
+            GameManager.Instance.AddALike();
+        }
+
+        GameManager.Instance.GameOver();
     }
 
     public bool DoesCharacterLikePlayer()

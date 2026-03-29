@@ -16,6 +16,9 @@ public class DialogueBox : ScriptableObject
         [Header("-Speaker-")]
         public Speaker character;
 
+        [Header("Character Emotion")]
+        public Sprite emote;
+
         [Header("-Text effects-")]
         public bool autoAdvance;
         public bool ShouldPlayTextSound;
@@ -75,4 +78,9 @@ public class DialogueBox : ScriptableObject
 
     }
 
+    public bool rhythmGameStart;
+
 }
+//// Serializable UnityEvent type
+//[Serializable]
+//public class DialogueEvent : UnityEngine.Events.UnityEvent { }

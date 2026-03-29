@@ -18,4 +18,12 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(0); // main menu woiuld be 0 but rn it is the Sonee stage
     }
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+     //   print("Scene count: " + SceneManager.sceneCount.ToString());
     }
 
     public void UpdateGameState(GameState newState)
@@ -93,8 +93,10 @@ public class GameManager : MonoBehaviour
         }
 
         // wait like 3 seconds for now? Do not know agreed way to get to the gameover scene/screen
-        // GameOver Scene
-        SceneManager.LoadScene(1);
+
+        // GameOver Scene 
+        // always set to the last scene (The Gameover)
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings -1); 
     }
 
 
