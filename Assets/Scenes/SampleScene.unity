@@ -166,7 +166,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.8
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2123,6 +2123,7 @@ MonoBehaviour:
   defaultTypingSpeed: 0.025
   choicesPresent: 0
   choiceSysRef: {fileID: 133114609}
+  state: 0
   conversationPartner: {fileID: 495747920}
   baseConversationPartnerSprite: {fileID: 3177175766042555401, guid: 51403c19ad1ddfa4d9048886c09486d2, type: 3}
 --- !u!1 &1541697853

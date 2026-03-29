@@ -55,12 +55,15 @@ public class CharacterAffection : MonoBehaviour
         // Reached final stage. Clean everything up. Will use a ienumerator for changing scenes later
         if(currentStageIndex == stages.Count - 1)
         {
-            GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
+            //GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
 
-            foreach (GameObject arrow in arrows)
-            {
-                Destroy(arrow);
-            }
+            //foreach (GameObject arrow in arrows)
+            //{
+            //    Destroy(arrow);
+            //}
+
+            GameManager.Instance.StopRhythmGame();
+
             StartCoroutine(WaitUntilEndDialogueFinishes());
             //GameManager.Instance.StopRhythmGame();
             //GameManager.Instance.UpdateGameState(GameState.Ending);
@@ -77,12 +80,12 @@ public class CharacterAffection : MonoBehaviour
     public IEnumerator WaitUntilEndDialogueFinishes()
     {
         yield return new WaitForSeconds(2f);
-        GameManager.Instance.StopRhythmGame();
         GameManager.Instance.UpdateGameState(GameState.Ending);
         if (DoesCharacterLikePlayer())
         {
             GameManager.Instance.AddALike();
         }
+
 
         GameManager.Instance.GameOver();
     }
