@@ -7,13 +7,15 @@ public class RhythmGame : MonoBehaviour
 
     public Transform[] spawnTransforms; // parallel array with arrow sprites
     public Sprite[] arrowSprites;
-    public float arrowSpeed = 5f;
+    public float arrowSpeed = 4f;
     public float spawnInterval = 1f; // spawn every second by default
     public GameObject arrow;
 
     private Coroutine spawnRoutine;
     private Key[] keysToPress = { Key.LeftArrow, Key.UpArrow, Key.DownArrow, Key.RightArrow };
-    
+
+    [SerializeField] private float timer = 0f;
+    public float timeIntervalToSpeedUp = 12f; // gets overriden by inspector
     void Start()
     {
         if(arrow == null)
@@ -22,12 +24,19 @@ public class RhythmGame : MonoBehaviour
         }
 
         GameManager.Instance.UpdateRhythmGameReference(this);
+        timer = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        timer += Time.deltaTime;
+        if(timer >= timeIntervalToSpeedUp)
+        {
+            spawnInterval = Mathf.Max(0.2f, 0.9f * spawnInterval); // Won't go below 0.2s
+            arrowSpeed = Mathf.Min(arrowSpeed + 0.25f, 7f); // Won;t go above 7
+            timer = 0f;
+        }
     }
 
     public void SpawnArrow(Vector3 spawnPosition, Key keyToPress, Sprite sprite)
