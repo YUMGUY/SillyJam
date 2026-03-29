@@ -160,10 +160,12 @@ public class ChoiceSystem : MonoBehaviour
         if(chosenPathNode.isCorrectChoice)
         {
             character.SetNextStage(Color.green);
+            GameManager.Instance.audioManager.PlayCorrect();
         }
         else
         {
             character.SetNextStage(Color.red);
+            GameManager.Instance.audioManager.PlayIncorrect();
         }
 
         if (choiceTimerCoroutine != null)

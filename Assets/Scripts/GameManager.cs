@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public float currentHealth;
 
     public RhythmGame gameToPlay;
+    public AudioManager audioManager;
     private void Awake()
     {
         if (Instance == null)
@@ -100,12 +101,12 @@ public class GameManager : MonoBehaviour
 
     public void NoteMissed()
     {
-        //Debug.Log("Missed note");
+        if(audioManager != null) { audioManager.PlayMiss(); }
         currentHealth -= damagePerMiss;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthUI();
 
-        // Bad Ending
+        // Died => Bad Ending
         if (currentHealth <= 0)
         {
             WriteText dialogue = FindAnyObjectByType<WriteText>();
@@ -118,7 +119,10 @@ public class GameManager : MonoBehaviour
 
     public void NoteHit()
     {
-        //
+        if(audioManager != null)
+        {
+           // audioManager.PlayHit();
+        }
     }
 
     void UpdateHealthUI()
