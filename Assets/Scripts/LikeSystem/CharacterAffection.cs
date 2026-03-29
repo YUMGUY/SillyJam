@@ -55,6 +55,12 @@ public class CharacterAffection : MonoBehaviour
         // Reached final stage. Clean everything up. Will use a ienumerator for changing scenes later
         if(currentStageIndex == stages.Count - 1)
         {
+            GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
+
+            foreach (GameObject arrow in arrows)
+            {
+                Destroy(arrow);
+            }
             StartCoroutine(WaitUntilEndDialogueFinishes());
             //GameManager.Instance.StopRhythmGame();
             //GameManager.Instance.UpdateGameState(GameState.Ending);
