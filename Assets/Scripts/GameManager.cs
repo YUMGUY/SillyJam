@@ -24,9 +24,14 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            //ResetGameData();
         }
         else
+        {
+            Instance.ResetGameData();
             Destroy(gameObject);
+
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,6 +41,18 @@ public class GameManager : MonoBehaviour
      //   print("Scene count: " + SceneManager.sceneCount.ToString());
     }
 
+    public void ResetGameData()
+    {
+        // Reset the win/loss criteria
+        numPeopleLike = 0;
+
+        // Reset health and state
+        currentHealth = maxHealth;
+        State = GameState.InProgress; 
+
+        //Debug.Log("GameManager: Data has been reset for a new run.");
+    }
+
     public void UpdateGameState(GameState newState)
     {
         State = newState;
@@ -43,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     public void AddALike()
     {
+        print("like aded");
         ++numPeopleLike;
     }
 
@@ -81,21 +99,31 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Game is over bc you died.");
                 break;
         }
-
-        if(State == GameState.Ending && numPeopleLike == maxNumPeople)
-        {
-            State = GameState.GoodEnding;
-            
-        }
-        else if((State == GameState.Ending || State == GameState.Died) && numPeopleLike != maxNumPeople)
+        maxNumPeople = 1;
+        bool allLike = numPeopleLike >= maxNumPeople;
+       // print("numpeoplelike: " + numPeopleLike);
+        if (State == GameState.Died)
         {
             State = GameState.BadEnding;
+            Debug.Log("Result: Player Died.");
         }
+        else if (numPeopleLike >= maxNumPeople) // Using >= is safer than ==
+        {
+            State = GameState.GoodEnding;
+            Debug.Log("Result: Good Ending!");
+        }
+        else
+        {
+            State = GameState.BadEnding;
+            Debug.Log("Result: Not enough likes.");
+        }
+
 
         // wait like 3 seconds for now? Do not know agreed way to get to the gameover scene/screen
 
         // GameOver Scene 
         // always set to the last scene (The Gameover)
+        Debug.Log($"LOADING SCENE. Final State: {State}");
         SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings -1); 
     }
 

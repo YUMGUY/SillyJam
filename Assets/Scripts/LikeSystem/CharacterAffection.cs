@@ -12,7 +12,7 @@ public class CharacterAffection : MonoBehaviour
     [SerializeField] private GameObject talkingStageUI;
     [SerializeField] private RectTransform canvasParent; // your canvas or panel
     [SerializeField] private float spacing = 120f; // UI spacing (pixels)
-    List<Image> stages = new List<Image>();
+    List<TalkingStageInfo> stages = new List<TalkingStageInfo>();
     [SerializeField] private int currentStageIndex = 0;
 
     public Sprite baseEmote;
@@ -33,10 +33,8 @@ public class CharacterAffection : MonoBehaviour
             RectTransform rect = stage.GetComponent<RectTransform>();
             rect.anchoredPosition = new Vector2(-888f, (-spacing * i) + (-206)); // PROBABLY JUST GET A TRASNFORM BUT THIS WILL DO FOR NOW
 
-            stages.Add(stage.GetComponent<Image>());
+            stages.Add(stage.GetComponent<TalkingStageInfo>());
         }
-
-        //GameManager.Instance.StartRhythmGame();
     }
 
     // Update is called once per frame
@@ -45,48 +43,38 @@ public class CharacterAffection : MonoBehaviour
         
     }
 
-    public void SetNextStage(Color color) // Color.Green or Color.Red
+    public void SetNextStage(Color color, bool isGreen) // Color.Green or Color.Red
     {
         if (currentStageIndex >= stages.Count)
             return;
 
-        stages[currentStageIndex].color = color;
-
+        stages[currentStageIndex].GetComponent<Image>().color = color;
+        stages[currentStageIndex].isGreen = isGreen;
+        bool isLastStage = (currentStageIndex == stages.Count - 1);
+        currentStageIndex++;
         // Reached final stage. Clean everything up. Will use a ienumerator for changing scenes later
-        if(currentStageIndex == stages.Count - 1)
+        if (isLastStage)
         {
-            //GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
-
-            //foreach (GameObject arrow in arrows)
-            //{
-            //    Destroy(arrow);
-            //}
-
             GameManager.Instance.StopRhythmGame();
 
             StartCoroutine(WaitUntilEndDialogueFinishes());
-            //GameManager.Instance.StopRhythmGame();
-            //GameManager.Instance.UpdateGameState(GameState.Ending);
-            //if(DoesCharacterLikePlayer())
-            //{
-            //    GameManager.Instance.AddALike();
-            //}
-            //GameManager.Instance.GameOver();
         }
-
-        currentStageIndex++;
     }
 
     public IEnumerator WaitUntilEndDialogueFinishes()
     {
         yield return new WaitForSeconds(2f);
+
         GameManager.Instance.UpdateGameState(GameState.Ending);
+        yield return new WaitForEndOfFrame();
         if (DoesCharacterLikePlayer())
         {
+            yield return null;
             GameManager.Instance.AddALike();
+            yield return null;
         }
 
-
+        yield return null;
         GameManager.Instance.GameOver();
     }
 
@@ -94,16 +82,20 @@ public class CharacterAffection : MonoBehaviour
     {
         int green = 0;
         int red = 0;
-        foreach (Image stage in stages)
+        // Copy the values to a local array first
+        bool[] results = new bool[stages.Count];
+        for (int i = 0; i < stages.Count; i++)
         {
-            if(stage.color == Color.green)
-            {
-                ++green;
-            }
-            else { ++red; }
+            results[i] = stages[i].isGreen;
         }
 
-
+        // Now count the local array
+        foreach (bool val in results)
+        {
+            if (val) green++;
+            else red++;
+        }
+        // print("number of red: " + red);
         return green > red;
     }
 }

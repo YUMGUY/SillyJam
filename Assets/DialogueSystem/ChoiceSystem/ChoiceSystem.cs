@@ -136,7 +136,7 @@ public class ChoiceSystem : MonoBehaviour
         if(chosenPathNode == null)
         {
             GameManager.Instance.audioManager.PlayIncorrect();
-            character.SetNextStage(Color.red);
+            character.SetNextStage(Color.red, false);
             foreach(Choice choice in currentChoices)
             {
                 if(!choice.isCorrectChoice)
@@ -161,12 +161,12 @@ public class ChoiceSystem : MonoBehaviour
         // Play appropriate Character Reaction
         if(chosenPathNode.isCorrectChoice)
         {
-            character.SetNextStage(Color.green);
+            character.SetNextStage(Color.green, true);
             GameManager.Instance.audioManager.PlayCorrect();
         }
         else
         {
-            character.SetNextStage(Color.red);
+            character.SetNextStage(Color.red, false);
             GameManager.Instance.audioManager.PlayIncorrect();
         }
 
@@ -195,6 +195,6 @@ public class ChoiceSystem : MonoBehaviour
     // automatic Fail of the stage
     public void SkipChoice()
     {
-        character.SetNextStage(Color.red);
+        character.SetNextStage(Color.red, false);
     }
 }
