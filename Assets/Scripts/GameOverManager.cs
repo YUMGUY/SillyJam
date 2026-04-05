@@ -23,6 +23,4 @@ public class GameOverManager : MonoBehaviour
             print("You got an ending. If this message doesn't show up. Something went wrong with the GameManager.");
         }
     }
-
-
 }
