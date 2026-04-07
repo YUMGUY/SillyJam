@@ -9,7 +9,8 @@ public class CharacterData : ScriptableObject
 
     [Header("Visuals")]
     public Image textPlate;
-    public Image defaultCharacterSprite;
+    public Image defaultCharacterImage;
+    public Sprite defaultSprite;
     public Image nameSourceImage;
     public Color textColor;
     

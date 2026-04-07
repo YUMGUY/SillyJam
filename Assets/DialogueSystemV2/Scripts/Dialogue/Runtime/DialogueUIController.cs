@@ -6,28 +6,6 @@ using UnityEngine;
 
 public class DialogueUIController : MonoBehaviour, IDialogueUIController
 {
-    //[SerializeField] private GameObject continuePrompt;
-
-    //private bool _advancePressed;
-
-    //public IEnumerator WaitForAdvance()
-    //{
-    //    _advancePressed = false;
-
-    //    if (continuePrompt != null)
-    //        continuePrompt.SetActive(true);
-
-    //    yield return new WaitUntil(() => _advancePressed);
-
-    //    if (continuePrompt != null)
-    //        continuePrompt.SetActive(false);
-    //}
-
-    //// Hook this up to a UI Button's OnClick in the Inspector
-    //public void OnAdvancePressed()
-    //{
-    //    _advancePressed = true;
-    //}
 
     [SerializeField] private GameObject dialogueBox;
 
