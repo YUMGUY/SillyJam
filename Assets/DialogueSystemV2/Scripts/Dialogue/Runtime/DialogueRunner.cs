@@ -10,6 +10,8 @@ public class DialogueRunner : MonoBehaviour
 
     [SerializeField] private DialogueGraph dialogueGraph;
 
+    private bool _forceEnded; // changed by ConversationTimer
+
     private void Awake()
     {
         _ctx = GetComponent<IDialogueContext>();
@@ -37,6 +39,22 @@ public class DialogueRunner : MonoBehaviour
         dialogueRunnerWorker = StartCoroutine(RunDialogue(entry));
     }
 
+    public void ForceEndDialogue()
+    {
+       // _forceEnded = true;
+       // _ctx.Writer.
+        if (dialogueRunnerWorker != null)
+            StopCoroutine(dialogueRunnerWorker);
+
+        // Stop timer if still running
+        //_ctx.ConversationTimer.StopTimer();
+
+        Debug.Log("Dialogue force ended by timer");
+        // this is where you'll hook in "stuff happens after" later
+        // e.g. onDialogueTimerExpired.Raise()
+    }
+
+
     private IEnumerator RunDialogue(DialogueNode node)
     {
         while (node != null)
@@ -45,6 +63,8 @@ public class DialogueRunner : MonoBehaviour
             node = node.GetNext(_ctx);
         }
 
-        Debug.Log("Dialogue finished overall.");
+        Debug.Log("Dialogue finished overall. Finished naturally!");
+
+        // onDialogueEnded?.Raise // future event channels
     }
 }

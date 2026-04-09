@@ -25,7 +25,11 @@ public class CharacterSpriteController : MonoBehaviour, ICharacterSpriteControll
     public void ChangeEmotion(CharacterData character, Sprite emotion)
     {
         Image slot = GetSlotForCharacter(character);
-        if (slot == null) return;
+        if (slot == null) 
+        {
+            Debug.LogWarning("Could not find character or player.");
+            return;
+        }
 
         // Slot stays active, just swap the sprite
         slot.sprite = emotion != null ? emotion : character.defaultSprite;
