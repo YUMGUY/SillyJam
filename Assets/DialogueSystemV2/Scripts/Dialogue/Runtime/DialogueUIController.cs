@@ -182,6 +182,13 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
         _spawnedButtons.Clear();
     }
 
+    private void OnDisable()
+    {
+        ClearChoiceButtons();
+        if(choicePanel != null && choicePanel.activeInHierarchy)
+            choicePanel.SetActive(false);
+    }
+
 }
 public enum ChoiceResult
 {

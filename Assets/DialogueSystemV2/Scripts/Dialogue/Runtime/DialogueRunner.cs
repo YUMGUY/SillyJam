@@ -10,7 +10,7 @@ public class DialogueRunner : MonoBehaviour
 
     [SerializeField] private DialogueGraph dialogueGraph;
 
-    private bool _forceEnded; // changed by ConversationTimer
+   // private bool _forceEnded; // changed by ConversationTimer, not used for now by anything
 
     private void Awake()
     {
@@ -41,15 +41,11 @@ public class DialogueRunner : MonoBehaviour
 
     public void ForceEndDialogue()
     {
-       // _forceEnded = true;
-       // _ctx.Writer.
-        if (dialogueRunnerWorker != null)
-            StopCoroutine(dialogueRunnerWorker);
+        //_forceEnded = true;
+        Debug.Log("Dialogue force ended by the Conversation Timer");
 
-        // Stop timer if still running
-        //_ctx.ConversationTimer.StopTimer();
-
-        Debug.Log("Dialogue force ended by timer");
+        gameObject.SetActive(false);
+ 
         // this is where you'll hook in "stuff happens after" later
         // e.g. onDialogueTimerExpired.Raise()
     }
