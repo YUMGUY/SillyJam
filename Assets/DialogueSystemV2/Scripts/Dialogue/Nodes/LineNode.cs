@@ -32,6 +32,9 @@ public class LineNode : DialogueNode
 
     public override IEnumerator Execute(IDialogueContext ctx)
     {
+        if (!IsEndNode && nextNode == null)
+            Debug.Log("<color=yellow> Line Node: " + this.name + " does not have a Next Node assigned</color>");
+
         // 1. Fire pre-commands (sprite changes, music, waits)
         foreach (var cmd in preCommands)
             yield return cmd.Execute(ctx);
@@ -49,6 +52,7 @@ public class LineNode : DialogueNode
             yield break;
         }
 
+        // FOR NOW WE AUTO ADVANCE TO NEXT DIALOGUE
         // 3. Wait for player to press advance
         // yield return ctx.UI.WaitForAdvance();
 

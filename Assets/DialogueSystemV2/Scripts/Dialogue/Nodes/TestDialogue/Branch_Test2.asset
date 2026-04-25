@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af4047b7a774904eaf31b44e50aea2a, type: 3}
+  m_Name: Branch_Test2
+  m_EditorClassIdentifier: Assembly-CSharp::BranchNode
+  choices:
+  - label: Pick this to go to Line Test 5, Correct
+    nextNode: {fileID: 11400000, guid: 5929e953c5c5bda4d9d0fb000e1de983, type: 2}
+    isCorrectChoice: 1
+  - label: Pick this to go to Line Test 6
+    nextNode: {fileID: 11400000, guid: 57303233478c9d84686f8c9899c5b635, type: 2}
+    isCorrectChoice: 0

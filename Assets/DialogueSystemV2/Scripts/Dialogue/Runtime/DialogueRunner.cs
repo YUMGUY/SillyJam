@@ -7,11 +7,10 @@ public class DialogueRunner : MonoBehaviour
 
     private IDialogueContext _ctx;
     public Coroutine dialogueRunnerWorker;
-
+    private Coroutine closingDialogueRunnerWorker;
     [SerializeField] private DialogueGraph dialogueGraph;
-
-   // private bool _forceEnded; // changed by ConversationTimer, not used for now by anything
-
+    [SerializeField] private DialogueNode entryClosingDialogue;
+    public bool hasEnded = false;
     private void Awake()
     {
         _ctx = GetComponent<IDialogueContext>();
@@ -36,18 +35,29 @@ public class DialogueRunner : MonoBehaviour
 
     public void StartDialogue(DialogueNode entry)
     {
+        hasEnded = false;
         dialogueRunnerWorker = StartCoroutine(RunDialogue(entry));
     }
 
     public void ForceEndDialogue()
     {
-        //_forceEnded = true;
-        Debug.Log("Dialogue force ended by the Conversation Timer");
+        if (hasEnded) return; // guard against double firing
 
-        gameObject.SetActive(false);
- 
-        // this is where you'll hook in "stuff happens after" later
-        // e.g. onDialogueTimerExpired.Raise()
+        hasEnded = true;
+
+        if (dialogueRunnerWorker != null)
+        {
+            StopCoroutine(dialogueRunnerWorker);
+            dialogueRunnerWorker = null;
+        }
+
+
+        Debug.Log("Dialogue force ended early by the Conversation Timer or by Strike System");
+        _ctx.UI.ForceStop();
+        DialogueEvents.DialogueEnded();
+
+        // dialgoue ends, conversation timer and battle box stops => ending dialogue starts => ending dialogue ends and starts respective Timeline
+        StartClosingDialogue();
     }
 
 
@@ -59,8 +69,37 @@ public class DialogueRunner : MonoBehaviour
             node = node.GetNext(_ctx);
         }
 
-        Debug.Log("Dialogue finished overall. Finished naturally!");
+        if (hasEnded) yield break; // protect against unlikely race condition where forceenddialogue is called exactly at the same frame
 
-        // onDialogueEnded?.Raise // future event channels
+        hasEnded = true;
+        Debug.Log("<color=green>Dialogue finished overall. Finished naturally!</color>");
+        DialogueEvents.DialogueEnded();
+        // dialgoue ends naturally (which means Mediocre ending achieved????), conversation timer and battle box stops => ending dialogue starts => ending dialogue ends and starts respective Timeline
+
+        // RunClosingDialogue
+        StartClosingDialogue();
+    }
+
+    // Handle end
+    private void StartClosingDialogue()
+    {
+        if (entryClosingDialogue == null)
+        {
+            Debug.LogWarning("No closing dialogue assigned");
+            return;
+        }
+
+        Debug.Log("Running closing dialogue...");
+        closingDialogueRunnerWorker = StartCoroutine(RunClosingDialogue(entryClosingDialogue));
+    }
+    private IEnumerator RunClosingDialogue(DialogueNode node)
+    {
+        while (node != null)
+        {
+            yield return node.Execute(_ctx);
+            node = node.GetNext(_ctx);
+        }
+
+        Debug.Log("Now the closing Timeline (cg) will play");
     }
 }

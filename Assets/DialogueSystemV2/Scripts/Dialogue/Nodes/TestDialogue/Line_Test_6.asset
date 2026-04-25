@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a52634355a0a897488d0a9d289ed7601, type: 3}
-  m_Name: Line_Test_2
+  m_Name: Line_Test_6
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
-  text: This is the 2nd test node. Goes to line 3
+  text: test 6
   typingSpeed: 0.03
-  nextNode: {fileID: 11400000, guid: f66fe11dce245b34495e06aef7a090b1, type: 2}
+  nextNode: {fileID: 11400000, guid: 77f526c2dca5cb545979ec9531808a5f, type: 2}
   preCommands: []
   postCommands: []
   autoAdvanceDelay: 0.5

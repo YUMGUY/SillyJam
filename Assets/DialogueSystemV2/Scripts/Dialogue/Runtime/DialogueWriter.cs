@@ -37,6 +37,7 @@ public class DialogueWriter : MonoBehaviour, IDialogueWriter
             dialogueText.text += c;
             yield return new WaitForSeconds(typingSpeed);
         }
+        //Debug.Log("Finished writing dialogue text");
     }
 
     public void Skip() => _skipRequested = true;

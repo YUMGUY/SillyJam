@@ -3,41 +3,65 @@ using UnityEngine.UI;
 
 public class StrikeSystem : MonoBehaviour
 {
-    [Header("Strike Settings")]
-    [SerializeField] private int currentStrikes = 0;
-    [SerializeField] private int currentStrikeIndex = 0;
-
     [Header("UI")]
     [SerializeField] private Image[] strikeBoxes;
 
+
+    [Header("Strike Counts")]
+    [SerializeField] private int _goodIndex = 0;
+    [SerializeField] private int _badIndex = 0;
+
+    [Header("Good Strike UI")]
+    [SerializeField] private Image[] goodBoxes;
+    [SerializeField] private Sprite goodDefault;
+    [SerializeField] private Sprite goodActive;
+  
+
+
+    [Header("Bad Strike UI")]
+    [SerializeField] private Image[] badBoxes;
+    [SerializeField] private Sprite badDefault;
+    [SerializeField] private Sprite badActive;
+
+    private DialogueRunner dialogueRunner;
+
+    private void Start()
+    {
+        dialogueRunner = GetComponent<DialogueRunner>();
+    }
+
+    // at the end, could do by majority rule if time runs out
     public void RegisterResult(ChoiceResult result)
     {
-        if (currentStrikeIndex >= strikeBoxes.Length) return;
-        
-        if(strikeBoxes.Length == 0)
-        {
-            Debug.LogWarning("Strike boxes array is empty");
-            return;
-        }
-
-        Image box = strikeBoxes[currentStrikeIndex];
-
         switch (result)
         {
             case ChoiceResult.Correct:
-                box.color = Color.green;
-                currentStrikeIndex++;   // advance - box is filled
+                if (_goodIndex < goodBoxes.Length)
+                {
+                    goodBoxes[_goodIndex].sprite = goodActive;
+                    _goodIndex++;
+                    if (_goodIndex == goodBoxes.Length)
+                    {
+                        dialogueRunner.ForceEndDialogue(); // start ending sequence
+                    }
+                }
                 break;
 
             case ChoiceResult.Incorrect:
-                box.color = Color.red;
-                currentStrikes++;
-                currentStrikeIndex++;   // advance - box is filled
+                if (_badIndex < badBoxes.Length)
+                {
+                    badBoxes[_badIndex].sprite = badActive;
+                    _badIndex++;
+                    if (_badIndex == badBoxes.Length)
+                    {
+                        dialogueRunner.ForceEndDialogue();
+                    }
+
+                }
                 break;
 
             case ChoiceResult.Skipped:
-                // Do nothing - leave box untouched, move onto next "choice box" stage
-                currentStrikeIndex++;
+                // no box filled, no index advanced
                 break;
         }
     }
@@ -48,18 +72,40 @@ public class StrikeSystem : MonoBehaviour
     }
 
 
-    private void UpdateStrikeUI(bool wasCorrect)
-    {
-        // update your strike indicator visuals here
-        // e.g. turn a light red or green
-    }
-
     public void Reset()
     {
-        currentStrikes = 0;
-        currentStrikeIndex = 0;
-        
-        foreach (Image box in strikeBoxes)
-            box.color = Color.white;
+        _goodIndex = 0;
+        _badIndex = 0;
+
+        foreach (Image box in goodBoxes)
+            box.sprite = goodDefault;
+
+        foreach (Image box in badBoxes)
+            box.sprite = badDefault;
     }
+
+    private DialogueEndResult EvaluateEnding()
+    {
+        bool allGood = _goodIndex >= goodBoxes.Length;
+        bool allBad = _badIndex >= badBoxes.Length;
+
+        DialogueEndResult result;
+
+        if (allGood)
+            result = DialogueEndResult.Good;
+        else if (allBad)
+            result = DialogueEndResult.Bad;
+        else
+            result = DialogueEndResult.Mediocre;
+
+        Debug.Log("Dialogue result: " + result);
+        return result;
+    }
+}
+
+public enum DialogueEndResult
+{
+    Good,
+    Bad,
+    Mediocre
 }

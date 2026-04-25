@@ -22,6 +22,7 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
     [SerializeField] private CharacterData npcCharacter;
 
     [Header("Reaction Sprites")]
+    [SerializeField] private Sprite playerThinkSprite;
     [SerializeField] private Sprite playerCorrectSprite;
     [SerializeField] private Sprite playerIncorrectSprite;
     [SerializeField] private Sprite npcCorrectSprite;
@@ -36,6 +37,7 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
     private IDialogueContext _ctx;
     private List<GameObject> _spawnedButtons = new List<GameObject>();
     private Coroutine _timerCoroutine;
+    private Coroutine _reactionCoroutine;
 
     private void Awake()
     {
@@ -63,19 +65,24 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
 
         SpawnChoiceButtons(choices);
         _timerCoroutine = StartCoroutine(ChoiceTimer(choices));
+        _ctx.SpriteController.ChangeEmotion(playerCharacter, playerThinkSprite);
 
         yield return new WaitUntil(() => _choiceMade); // wait until a choice button is pressed or skipped from the timer running out
+        
+        if(timerImage!=null) // reset
+            timerImage.fillAmount = 1f; 
 
         // Store result on context
         bool wasCorrect = _choiceResult == ChoiceResult.Correct;
-        _ctx.LastChoiceWasCorrect = wasCorrect; // if choice was skipped => false
-        _ctx.StrikeSystem.RegisterResult(_choiceResult); // pass the enum now
+        _ctx.LastChoiceWasCorrect = wasCorrect; // if choice was skipped => false , FIXME to lastchoiceState of correct ,inccorrect, skippped
+        _ctx.StrikeSystem.RegisterResult(_choiceResult);
 
         ClearChoiceButtons();
         choicePanel.SetActive(false);
 
         // this yield stops the dialogue from continuing , but i can remove it to just play parallel to the dialogue (if parallel, at risk of having choices too close to each other in the future)
-        yield return StartCoroutine(PlayReaction(_choiceResult));
+        _reactionCoroutine = StartCoroutine(PlayReaction(_choiceResult));
+        yield return _reactionCoroutine;
     }
 
     private IEnumerator ChoiceTimer(DialogueChoice[] choices)
@@ -91,7 +98,7 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
 
         if (!_choiceMade)
         {
-            Debug.Log("<color=yellow>Choice timer expired — skipped</color>");
+            Debug.Log("<color=yellow>Choice timer expired - skipped</color>");
             _choiceResult = ChoiceResult.Skipped;
 
             // Follow first incorrect path as default, but NO penalty => TODO add isSkippedChoice? boolean to DialogueChoice
@@ -167,7 +174,7 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
             _timerCoroutine = null;
         }
 
-        Debug.Log("Chosen choice: " + choice.label); // comment out later
+        //Debug.Log("Chosen choice: " + choice.label); // comment out later
         _choiceResult = choice.isCorrectChoice ? ChoiceResult.Correct : ChoiceResult.Incorrect;
 
         // replaced by DialogueChoice TODO
@@ -180,6 +187,28 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
         foreach (var btn in _spawnedButtons)
             Destroy(btn);
         _spawnedButtons.Clear();
+    }
+
+    public void ForceStop()
+    {
+        if (_timerCoroutine != null)
+        {
+            StopCoroutine(_timerCoroutine);
+            _timerCoroutine = null;
+        }
+        if (_reactionCoroutine != null)
+        {
+            StopCoroutine(_reactionCoroutine);
+            _reactionCoroutine = null;
+        }
+
+        if (_ctx?.SpriteController != null)
+        {
+            _ctx.SpriteController.ChangeEmotion(playerCharacter, playerCharacter.defaultSprite);
+        }
+        _choiceMade = true; // unblock WaitUntil if needed
+        ClearChoiceButtons();
+        choicePanel.SetActive(false);
     }
 
     private void OnDisable()
