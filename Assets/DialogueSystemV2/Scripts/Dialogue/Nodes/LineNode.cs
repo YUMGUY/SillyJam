@@ -48,7 +48,7 @@ public class LineNode : DialogueNode
                 yield return cmd.Execute(ctx);
 
             // Final node — log immediately, no wait
-            Debug.Log("Dialogue finished at: " + name);
+            Debug.Log("Dialogue finished at End Node: " + name);
             yield break;
         }
 
@@ -62,7 +62,34 @@ public class LineNode : DialogueNode
         // 4. Fire post-commands
         foreach (var cmd in postCommands)
             yield return cmd.Execute(ctx);
+
+        if(!isEndNode) // safety check
+            ctx.StrikeSystem.ShouldStartEndingSequence();
     }
 
     public override DialogueNode GetNext(IDialogueContext ctx) => nextNode;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        VerifyNode();
+    }
+    private void VerifyNode()
+    {
+        if (speaker == null)
+            Debug.LogWarning("<color=orange>LineNode: " + name + " has no Speaker assigned</color>");
+
+        if (string.IsNullOrEmpty(text))
+            Debug.LogWarning("<color=orange>LineNode: " + name + " has no Text assigned</color>");
+
+        if (!isEndNode && nextNode == null)
+            Debug.LogWarning("<color=yellow>LineNode: " + name + " is not an end node but has no Next Node assigned</color>");
+
+        if (isEndNode && nextNode != null)
+            Debug.LogWarning("<color=yellow>LineNode: " + name + " is marked as end node but Next Node is still assigned</color>");
+
+        if (typingSpeed <= 0f)
+            Debug.LogWarning("<color=orange>LineNode: " + name + " has typing speed of 0 or less</color>");
+    }
+#endif
 }

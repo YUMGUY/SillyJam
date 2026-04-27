@@ -5,14 +5,25 @@ using TMPro;
 public class DialogueWriter : MonoBehaviour, IDialogueWriter
 {
     [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private TMP_Text playerDialogueText;
     [SerializeField] private TMP_Text speakerNameText;
+
+    [Header("Characters")]
+    [SerializeField] private CharacterData playerCharacter;
 
     private bool _skipRequested;
 
     public IEnumerator WriteText(CharacterData speaker, string text, float typingSpeed)
     {
         _skipRequested = false;
-        dialogueText.text = string.Empty;
+
+        bool isPlayer = speaker == playerCharacter;
+        TMP_Text targetText = isPlayer ? playerDialogueText : dialogueText;
+
+        if (isPlayer)
+            playerDialogueText.text = string.Empty;
+        else
+            dialogueText.text = string.Empty;
 
         // Set speaker name and color
         if (speakerNameText != null && speaker != null)
@@ -30,11 +41,11 @@ public class DialogueWriter : MonoBehaviour, IDialogueWriter
         {
             if (_skipRequested)
             {
-                dialogueText.text = text;
+                targetText.text = text;
                 yield break;
             }
 
-            dialogueText.text += c;
+            targetText.text += c;
             yield return new WaitForSeconds(typingSpeed);
         }
         //Debug.Log("Finished writing dialogue text");

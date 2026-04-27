@@ -15,10 +15,10 @@ MonoBehaviour:
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
   text: The closing text will write itself out and then there will be  a backa nad
     forth convo between me and the player.
-  typingSpeed: 0.03
-  nextNode: {fileID: 0}
+  typingSpeed: 0.025
+  nextNode: {fileID: 11400000, guid: e2cd53a5c27faeb41aca6050ee73ef4c, type: 2}
   preCommands:
   - {fileID: 11400000, guid: 688a1b1255d4f214296cc9b3d80d9aa1, type: 2}
   postCommands: []
   autoAdvanceDelay: 0.5
-  isEndNode: 1
+  isEndNode: 0

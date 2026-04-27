@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
   text: Aw shucks we are here!
-  typingSpeed: 0.03
+  typingSpeed: 0.025
   nextNode: {fileID: 11400000, guid: 3e80c3868600cce489632c61c538e730, type: 2}
   preCommands:
   - {fileID: 11400000, guid: de0bac83e6476e2499faa993c27d0a8e, type: 2}

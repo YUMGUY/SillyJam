@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Branch_Test3
   m_EditorClassIdentifier: Assembly-CSharp::BranchNode
   choices:
-  - label: Pick this to go to Line Test 3
-    nextNode: {fileID: 11400000, guid: f66fe11dce245b34495e06aef7a090b1, type: 2}
+  - label: Pick this to go to Line Test 8 correct
+    nextNode: {fileID: 11400000, guid: 7f7d836a64ef0e14cbc55fbeaf5a215a, type: 2}
     isCorrectChoice: 1
-  - label: Pick this to go to Line Test 2
-    nextNode: {fileID: 11400000, guid: 12647860ce5c9c84fb21726c323bbf58, type: 2}
+  - label: Pick this to go to Line Test 8 INCORRECT
+    nextNode: {fileID: 11400000, guid: 7f7d836a64ef0e14cbc55fbeaf5a215a, type: 2}
     isCorrectChoice: 0

@@ -42,7 +42,7 @@ public class StrikeSystem : MonoBehaviour
                     _goodIndex++;
                     if (_goodIndex == goodBoxes.Length)
                     {
-                        dialogueRunner.ForceEndDialogue(); // start ending sequence
+                       // dialogueRunner.ForceEndDialogue(); // start ending sequence
                     }
                 }
                 break;
@@ -54,7 +54,7 @@ public class StrikeSystem : MonoBehaviour
                     _badIndex++;
                     if (_badIndex == badBoxes.Length)
                     {
-                        dialogueRunner.ForceEndDialogue();
+                      //  dialogueRunner.ForceEndDialogue();
                     }
 
                 }
@@ -64,6 +64,12 @@ public class StrikeSystem : MonoBehaviour
                 // no box filled, no index advanced
                 break;
         }
+    }
+
+    public void ShouldStartEndingSequence() // Threshold met to start closing dialogue after the "Reaction" dialogue plays out
+    {
+        if (_goodIndex >= goodBoxes.Length || _badIndex >= badBoxes.Length)
+            dialogueRunner.ForceEndDialogue();
     }
 
     public void InitStrikeIndicators()
@@ -84,7 +90,7 @@ public class StrikeSystem : MonoBehaviour
             box.sprite = badDefault;
     }
 
-    private DialogueEndResult EvaluateEnding()
+    public DialogueEndResult EvaluateEnding()
     {
         bool allGood = _goodIndex >= goodBoxes.Length;
         bool allBad = _badIndex >= badBoxes.Length;

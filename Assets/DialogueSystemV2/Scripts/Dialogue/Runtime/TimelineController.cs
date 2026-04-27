@@ -8,14 +8,6 @@ public class TimelineController : MonoBehaviour
     [SerializeField] private PlayableDirector badEndingTimeline;
     [SerializeField] private PlayableDirector midEndingTimeline;
 
-    private void OnEnable()
-    {
-    }
-
-    private void OnDisable()
-    {
-    }
-
     private void PlayEndingCG(DialogueEndResult endResult)
     {
         switch(endResult)
@@ -29,9 +21,29 @@ public class TimelineController : MonoBehaviour
                     badEndingTimeline.Play();
                 break;
             case DialogueEndResult.Mediocre:
-                if (midEndingTimeline != null)
+                if(midEndingTimeline != null)
                     midEndingTimeline.Play();
                 break;
         }
+    }
+
+    private void OnEnable()
+    {
+        DialogueEvents.OnClosingDialogueEnded += PlayEndingCG;
+    }
+
+    private void OnDisable()
+    {
+        DialogueEvents.OnClosingDialogueEnded -= PlayEndingCG;
+    }
+
+    public void TestBadCloser()
+    {
+        if (badEndingTimeline != null)
+        {
+            Debug.Log("Tested bad ending cg");
+            badEndingTimeline.Play();
+        }
+           
     }
 }

@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class DialogueUIController : MonoBehaviour, IDialogueUIController
 {
-    [Header("Dialogue Box")]
+    [Header("Dialogue Boxes")]
     [SerializeField] private GameObject dialogueBox;
+    [SerializeField] private GameObject playerDialogueBox;
 
     [Header("Choice UI")]
     [SerializeField] private GameObject choicePanel;
@@ -55,6 +56,18 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
     {
         if (dialogueBox != null)
             dialogueBox.SetActive(false);
+    }
+
+    public void ShowPlayerDialogueBox()
+    {
+        if (playerDialogueBox != null)
+            playerDialogueBox.SetActive(true);
+    }
+
+    public void HidePlayerDialogueBox()
+    {
+        if (playerDialogueBox != null)
+            playerDialogueBox.SetActive(false);
     }
 
     public IEnumerator ShowChoices(DialogueChoice[] choices)

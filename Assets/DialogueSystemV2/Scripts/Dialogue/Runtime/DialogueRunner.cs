@@ -39,6 +39,7 @@ public class DialogueRunner : MonoBehaviour
         dialogueRunnerWorker = StartCoroutine(RunDialogue(entry));
     }
 
+    // Activated when conversation timer runs out or Strikes are filled out (good/bad)
     public void ForceEndDialogue()
     {
         if (hasEnded) return; // guard against double firing
@@ -54,6 +55,7 @@ public class DialogueRunner : MonoBehaviour
 
         Debug.Log("Dialogue force ended early by the Conversation Timer or by Strike System");
         _ctx.UI.ForceStop();
+        _ctx.AudioService.StopMusic();
         DialogueEvents.DialogueEnded();
 
         // dialgoue ends, conversation timer and battle box stops => ending dialogue starts => ending dialogue ends and starts respective Timeline
@@ -73,6 +75,7 @@ public class DialogueRunner : MonoBehaviour
 
         hasEnded = true;
         Debug.Log("<color=green>Dialogue finished overall. Finished naturally!</color>");
+        _ctx.AudioService.StopMusic();
         DialogueEvents.DialogueEnded();
         // dialgoue ends naturally (which means Mediocre ending achieved????), conversation timer and battle box stops => ending dialogue starts => ending dialogue ends and starts respective Timeline
 
@@ -90,6 +93,7 @@ public class DialogueRunner : MonoBehaviour
         }
 
         Debug.Log("Running closing dialogue...");
+        _ctx.UI.ShowPlayerDialogueBox();
         closingDialogueRunnerWorker = StartCoroutine(RunClosingDialogue(entryClosingDialogue));
     }
     private IEnumerator RunClosingDialogue(DialogueNode node)
@@ -100,6 +104,12 @@ public class DialogueRunner : MonoBehaviour
             node = node.GetNext(_ctx);
         }
 
+        Debug.Log("<color=cyan>Closing dialogue finished: waiting 2 seconds...</color>");
+
+        yield return new WaitForSeconds(2f);
+
         Debug.Log("Now the closing Timeline (cg) will play");
+        DialogueEndResult result = _ctx.StrikeSystem.EvaluateEnding();
+        DialogueEvents.ClosingDialogueEnded(result);
     }
 }

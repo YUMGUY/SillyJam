@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
   text: test 7 end node the amount of typing here is crazy sauce.
-  typingSpeed: 0.03
-  nextNode: {fileID: 0}
+  typingSpeed: 0.025
+  nextNode: {fileID: 11400000, guid: 0949be1b61635f14da9153cd691f4126, type: 2}
   preCommands: []
   postCommands: []
   autoAdvanceDelay: 0.5
-  isEndNode: 1
+  isEndNode: 0

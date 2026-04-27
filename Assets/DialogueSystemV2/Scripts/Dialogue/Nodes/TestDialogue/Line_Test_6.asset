@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Line_Test_6
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
-  text: test 6
-  typingSpeed: 0.03
+  text: test 6 node that is typed out. reachable by false choice
+  typingSpeed: 0.025
   nextNode: {fileID: 11400000, guid: 77f526c2dca5cb545979ec9531808a5f, type: 2}
   preCommands: []
   postCommands: []
