@@ -24,13 +24,21 @@ public class DialogueRunner : MonoBehaviour
     {
         if (dialogueGraph != null)
         {
-            Debug.Log("Dialogue Runner automatically started from Start");
-            StartDialogue(dialogueGraph.entryNode);
+           // Debug.Log("Dialogue Runner automatically started from Start");
+           // StartDialogue(dialogueGraph.entryNode);
         }
         else
         {
             Debug.Log("The entry dialogue graph is missing!");
         }
+    }
+
+    // Called by Signal?
+    public void TriggerDialogue()
+    {
+        Debug.Log("<color=green>Dialogue triggered by Intro CG</color>");
+        if (dialogueGraph.entryNode != null)
+            StartDialogue(dialogueGraph.entryNode);
     }
 
     public void StartDialogue(DialogueNode entry)

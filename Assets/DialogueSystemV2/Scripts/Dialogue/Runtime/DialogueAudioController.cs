@@ -6,13 +6,14 @@ public class DialogueAudioController : MonoBehaviour, IAudioService
     [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
-
+    [SerializeField] private AudioSource characterSource;
     private void Awake()
     {
         AudioSource[] sources = GetComponents<AudioSource>();
         musicSource = sources[0];  // first AudioSource = music
         sfxSource = sources[1];  // second AudioSource = sfx
 
+        // third AudioSource = character
         //Debug.Log(sfxSource.priority); // testing
     }
 
@@ -51,5 +52,10 @@ public class DialogueAudioController : MonoBehaviour, IAudioService
     {
         if (clip != null)
             sfxSource.PlayOneShot(clip);
+    }
+
+    public void PlayCharacterVoice(AudioClip clip)
+    {
+        characterSource.PlayOneShot(clip);
     }
 }
