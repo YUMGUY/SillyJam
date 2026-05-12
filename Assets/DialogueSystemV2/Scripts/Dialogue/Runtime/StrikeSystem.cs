@@ -42,7 +42,8 @@ public class StrikeSystem : MonoBehaviour
                     _goodIndex++;
                     if (_goodIndex == goodBoxes.Length)
                     {
-                       // dialogueRunner.ForceEndDialogue(); // start ending sequence
+                        // make player invincible to prevent timer from hitting 0
+                        ConversationTimer.Instance.StopTimer();
                     }
                 }
                 break;
@@ -54,13 +55,13 @@ public class StrikeSystem : MonoBehaviour
                     _badIndex++;
                     if (_badIndex == badBoxes.Length)
                     {
-                      //  dialogueRunner.ForceEndDialogue();
+                        ConversationTimer.Instance.StopTimer();
                     }
 
                 }
                 break;
 
-            case ChoiceResult.Skipped:
+            case ChoiceResult.Skipped: // if choice is skipped and timer runs out while reacting
                 // no box filled, no index advanced
                 break;
         }

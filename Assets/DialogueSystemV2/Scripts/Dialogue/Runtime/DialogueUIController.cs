@@ -86,13 +86,17 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
             timerImage.fillAmount = 1f; 
 
         // Store result on context
-        bool wasCorrect = _choiceResult == ChoiceResult.Correct;
-        _ctx.LastChoiceWasCorrect = wasCorrect; // if choice was skipped => false , FIXME to lastchoiceState of correct ,inccorrect, skippped
         _ctx.StrikeSystem.RegisterResult(_choiceResult);
-
+        if (_ctx.LastPickedChoice.nextNode is LineNode lineNode && lineNode.IsEndNode)
+        {
+            if (_ctx.LastPickedChoice.choiceResult == ChoiceResult.Skipped)
+                Debug.Log("Stopped timer even when skipped choice bc endnode is next.");
+            ConversationTimer.Instance.StopTimer();
+        }
         ClearChoiceButtons();
         choicePanel.SetActive(false);
 
+        // TODO  timer still goes down durimg play reaction, maybe no yield return, needs testing
         // this yield stops the dialogue from continuing , but i can remove it to just play parallel to the dialogue (if parallel, at risk of having choices too close to each other in the future)
         _reactionCoroutine = StartCoroutine(PlayReaction(_choiceResult));
         yield return _reactionCoroutine;
@@ -114,18 +118,16 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
             Debug.Log("<color=yellow>Choice timer expired - skipped</color>");
             _choiceResult = ChoiceResult.Skipped;
 
-            // Follow first incorrect path as default, but NO penalty => TODO add isSkippedChoice? boolean to DialogueChoice
+            // Follow Skipped path
             for (int i = 0; i < choices.Length; i++)
             {
-                if (!choices[i].isCorrectChoice)
+                if (choices[i].choiceResult == ChoiceResult.Skipped)
                 {
-                    // replaced by DialogueChoice todo
-                    _ctx.LastChosenIndex = i;
+                    _ctx.LastPickedChoice = choices[i];
                     break;
                 }
             }
 
-            // This means Choice.Skipped is the value used
             _choiceMade = true;
         }
     }
@@ -162,11 +164,14 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
         {
             int capturedIndex = i;  // capture for lambda
 
+            if (choices[capturedIndex].choiceResult == ChoiceResult.Skipped) // the skipped choice should be last, but this is a precaution
+                continue;
+
             GameObject btnObj = Instantiate(choiceButtonPrefab, choicePanel.transform);
 
             TMP_Text label = btnObj.GetComponentInChildren<TMP_Text>();
             if (label != null)
-                label.text = choices[i].label;
+                label.text = choices[capturedIndex].label;
 
             Button btn = btnObj.GetComponent<Button>();
             if (btn != null)
@@ -187,11 +192,10 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
             _timerCoroutine = null;
         }
 
-        //Debug.Log("Chosen choice: " + choice.label); // comment out later
-        _choiceResult = choice.isCorrectChoice ? ChoiceResult.Correct : ChoiceResult.Incorrect;
-
-        // replaced by DialogueChoice TODO
-        _ctx.LastChosenIndex = index; 
+        // replaced by DialogueChoice
+        Debug.Log("Chosen choice result: " + choice.choiceResult); // comment out later
+        _ctx.LastPickedChoice = choice;
+        _choiceResult = choice.choiceResult;
         _choiceMade = true;
     }
 

@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a52634355a0a897488d0a9d289ed7601, type: 3}
-  m_Name: Line_Test_8
+  m_Name: Line_Test_9
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
-  text: test 8 end node. typing this out and this is a long sentence. for me to type
-    out
+  text: 'I like to Dazzle too! The name''s
+
+    Sonee, it sure is a pleasure.'
   typingSpeed: 0.025
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: f5ee7066cdef11b40813a88277b1174b, type: 2}
   preCommands: []
   postCommands: []
   autoAdvanceDelay: 0.5
-  isEndNode: 1
+  isEndNode: 0

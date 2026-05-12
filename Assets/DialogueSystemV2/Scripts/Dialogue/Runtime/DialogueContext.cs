@@ -7,10 +7,9 @@ public class DialogueContext : MonoBehaviour, IDialogueContext
 
     public ICharacterSpriteController SpriteController { get; private set; }
     public StrikeSystem StrikeSystem { get; private set; }
-   
+    public DialogueChoice LastPickedChoice { get; set; } = null;
     public IAudioService AudioService { get; private set; }
-    public int LastChosenIndex { get; set; } = -1;
-    public bool LastChoiceWasCorrect { get; set; } = false;
+    
     private void Awake()
     {
         Writer = GetComponentInChildren<DialogueWriter>();

@@ -15,7 +15,10 @@ MonoBehaviour:
   choices:
   - label: Pick this to go to Line Test 5, Correct
     nextNode: {fileID: 11400000, guid: 5929e953c5c5bda4d9d0fb000e1de983, type: 2}
-    isCorrectChoice: 1
+    choiceResult: 0
   - label: Pick this to go to Line Test 6
     nextNode: {fileID: 11400000, guid: 57303233478c9d84686f8c9899c5b635, type: 2}
-    isCorrectChoice: 0
+    choiceResult: 1
+  - label: skip
+    nextNode: {fileID: 11400000, guid: 57303233478c9d84686f8c9899c5b635, type: 2}
+    choiceResult: 2

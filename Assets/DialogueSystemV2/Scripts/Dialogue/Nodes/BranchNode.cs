@@ -18,12 +18,10 @@ public class BranchNode : DialogueNode
 
     public override DialogueNode GetNext(IDialogueContext ctx)
     {
-        int idx = ctx.LastChosenIndex;
+        if (ctx.LastPickedChoice != null)
+            return ctx.LastPickedChoice.nextNode;
 
-        if (idx >= 0 && idx < choices.Length)
-            return choices[idx].nextNode;
-
-        Debug.LogWarning("BranchNode: No valid choice index set on context");
+        Debug.LogWarning("BranchNode: No valid choice picked set on context");
         return null;
     }
 }

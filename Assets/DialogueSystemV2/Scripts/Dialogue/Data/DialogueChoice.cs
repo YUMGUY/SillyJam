@@ -8,5 +8,6 @@ public class DialogueChoice
     public DialogueNode nextNode;
 
     [Header("Strike system")]
-    public bool isCorrectChoice;
+    public ChoiceResult choiceResult;
+    //public bool isCorrectChoice;
 }

@@ -10,6 +10,8 @@ public class DialogueRunner : MonoBehaviour
     private Coroutine closingDialogueRunnerWorker;
     [SerializeField] private DialogueGraph dialogueGraph;
     [SerializeField] private DialogueNode entryClosingDialogue;
+
+    // closingbad, closing mediocre, closing good DialogeNode , that is chossen by the strikesystem function
     public bool hasEnded = false;
     private void Awake()
     {
@@ -50,7 +52,7 @@ public class DialogueRunner : MonoBehaviour
     // Activated when conversation timer runs out or Strikes are filled out (good/bad)
     public void ForceEndDialogue()
     {
-        if (hasEnded) return; // guard against double firing
+        if (hasEnded) return; // guard against double firing (loss of time or conversation timer ends while last dialogue is being written out)
 
         hasEnded = true;
 

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5af4047b7a774904eaf31b44e50aea2a, type: 3}
-  m_Name: Branch_Test3
+  m_Name: Question1
   m_EditorClassIdentifier: Assembly-CSharp::BranchNode
   choices:
-  - label: Pick this to go to Line Test 9 correct
-    nextNode: {fileID: 11400000, guid: 2984d291df0c33049af89c1bb38a7346, type: 2}
+  - label: "Uh- yeah! I think I\u2019m okay!"
+    nextNode: {fileID: 0}
     choiceResult: 0
-  - label: Pick this to go to Line Test 8 INCORRECT
-    nextNode: {fileID: 11400000, guid: 7f7d836a64ef0e14cbc55fbeaf5a215a, type: 2}
+  - label: Terrible. Awful. My schemes have been foiled.
+    nextNode: {fileID: 0}
     choiceResult: 1
   - label: skip
-    nextNode: {fileID: 11400000, guid: 7f7d836a64ef0e14cbc55fbeaf5a215a, type: 2}
+    nextNode: {fileID: 0}
     choiceResult: 2
