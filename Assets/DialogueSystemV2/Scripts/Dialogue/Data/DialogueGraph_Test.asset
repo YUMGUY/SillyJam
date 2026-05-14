@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a22d4d62ae2ddf4eb462b01e365de2b, type: 3}
   m_Name: DialogueGraph_Test
   m_EditorClassIdentifier: Assembly-CSharp::DialogueGraph
-  entryNode: {fileID: 11400000, guid: a88b60cc789b1e546977179aae03c0af, type: 2}
-  nodes:
-  - {fileID: 11400000, guid: a88b60cc789b1e546977179aae03c0af, type: 2}
-  - {fileID: 11400000, guid: 3e80c3868600cce489632c61c538e730, type: 2}
-  - {fileID: 11400000, guid: 12647860ce5c9c84fb21726c323bbf58, type: 2}
-  - {fileID: 11400000, guid: f66fe11dce245b34495e06aef7a090b1, type: 2}
-  developerNotes: Test nodes for dialogue system v2
+  entryNode: {fileID: 11400000, guid: a00466c9cc3361f4aa41b70f6bc2ab88, type: 2}
+  nodes: []
+  developerNotes: Sonee nodes for dialogue system v2

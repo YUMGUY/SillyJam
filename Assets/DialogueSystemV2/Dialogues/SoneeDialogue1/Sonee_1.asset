@@ -16,7 +16,8 @@ MonoBehaviour:
   text: You took quite the fall there! Are you alright?
   typingSpeed: 0.03
   nextNode: {fileID: 11400000, guid: 1a8016f3818f1a745b5ac18d27983e01, type: 2}
-  preCommands: []
+  preCommands:
+  - {fileID: 11400000, guid: de0bac83e6476e2499faa993c27d0a8e, type: 2}
   postCommands: []
   autoAdvanceDelay: 0.5
   isEndNode: 0

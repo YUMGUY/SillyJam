@@ -4,6 +4,7 @@ using UnityEngine;
 [Serializable]
 public class DialogueChoice
 {
+    [TextArea(2, 2)]
     public string label;
     public DialogueNode nextNode;
 

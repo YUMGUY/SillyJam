@@ -143,6 +143,7 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
         }
         else
         {
+            // TODO: implement npcincorrectsprite in inspector
             _ctx.SpriteController.ChangeEmotion(playerCharacter, playerIncorrectSprite);
            // _ctx.SpriteController.ChangeEmotion(npcCharacter, npcIncorrectSprite);
         }
@@ -150,7 +151,7 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
         // Hold reaction for duration
         yield return new WaitForSeconds(reactionDuration);
 
-        // Reset back to default sprites
+        // Reset player back to default sprite, npc can stay
         _ctx.SpriteController.ChangeEmotion(playerCharacter, playerCharacter.defaultSprite);
        // _ctx.SpriteController.ChangeEmotion(npcCharacter, npcCharacter.defaultSprite);
     }

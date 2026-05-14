@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5af1a8f2fc5eaa04497ae40c0507b289, type: 3}
-  m_Name: Sizzle
+  m_Name: Sonee1
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDataSO
-  characterName: Sizzle
+  characterName: Sonee
   textPlate: {fileID: 0}
   defaultCharacterImage: {fileID: 0}
-  defaultSprite: {fileID: 6180210142172037513, guid: c897d5ac0af1de14183094d16ea9a21e, type: 3}
+  defaultSprite: {fileID: 0}
   nameSourceImage: {fileID: 0}
-  textColor: {r: 1, g: 1, b: 1, a: 1}
+  textColor: {r: 0, g: 0, b: 0, a: 1}
   voiceBlip: {fileID: 0}

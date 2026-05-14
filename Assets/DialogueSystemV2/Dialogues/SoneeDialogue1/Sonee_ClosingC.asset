@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a52634355a0a897488d0a9d289ed7601, type: 3}
-  m_Name: Line_Test_4
+  m_Name: Sonee_ClosingC
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
-  text: 'This is the 4rd node: question '
-  typingSpeed: 0.025
-  nextNode: {fileID: 11400000, guid: 95d16f404a3812c4aa0b259406df67cf, type: 2}
+  text: You took quite the fall there! Are you alright?
+  typingSpeed: 0.03
+  nextNode: {fileID: 0}
   preCommands: []
   postCommands: []
   autoAdvanceDelay: 0.5

@@ -35,7 +35,7 @@ public class DialogueRunner : MonoBehaviour
         }
     }
 
-    // Called by Signal?
+    // Called by Signal of the Intro CG Canvas
     public void TriggerDialogue()
     {
         Debug.Log("<color=green>Dialogue triggered by Intro CG</color>");
