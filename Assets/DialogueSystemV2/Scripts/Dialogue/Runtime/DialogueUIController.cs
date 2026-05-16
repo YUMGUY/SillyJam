@@ -82,7 +82,7 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
 
         yield return new WaitUntil(() => _choiceMade); // wait until a choice button is pressed or skipped from the timer running out
         
-        if(timerImage!=null) // reset
+        if(timerImage!=null)
             timerImage.fillAmount = 1f; 
 
         // Store result on context
@@ -139,13 +139,12 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
         if (wasCorrect == ChoiceResult.Correct)
         {
             _ctx.SpriteController.ChangeEmotion(playerCharacter, playerCorrectSprite);
-           // _ctx.SpriteController.ChangeEmotion(npcCharacter, npcCorrectSprite);
+            _ctx.SpriteController.ChangeEmotion(npcCharacter, npcCorrectSprite);
         }
         else
         {
-            // TODO: implement npcincorrectsprite in inspector
             _ctx.SpriteController.ChangeEmotion(playerCharacter, playerIncorrectSprite);
-           // _ctx.SpriteController.ChangeEmotion(npcCharacter, npcIncorrectSprite);
+            _ctx.SpriteController.ChangeEmotion(npcCharacter, npcIncorrectSprite);
         }
 
         // Hold reaction for duration
@@ -193,8 +192,6 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
             _timerCoroutine = null;
         }
 
-        // replaced by DialogueChoice
-        Debug.Log("Chosen choice result: " + choice.choiceResult); // comment out later
         _ctx.LastPickedChoice = choice;
         _choiceResult = choice.choiceResult;
         _choiceMade = true;

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Activator
   - Arrow
+  - Despawner
   layers:
   - Default
   - TransparentFX

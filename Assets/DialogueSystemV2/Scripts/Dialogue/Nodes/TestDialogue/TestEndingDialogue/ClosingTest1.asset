@@ -18,6 +18,7 @@ MonoBehaviour:
   typingSpeed: 0.025
   nextNode: {fileID: 11400000, guid: e2cd53a5c27faeb41aca6050ee73ef4c, type: 2}
   preCommands:
+  - {fileID: 11400000, guid: 5bc03145e14ed8243be861a153b46184, type: 2}
   - {fileID: 11400000, guid: 688a1b1255d4f214296cc9b3d80d9aa1, type: 2}
   postCommands: []
   autoAdvanceDelay: 0.5

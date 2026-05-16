@@ -7,26 +7,32 @@ public class ArrowBehavior : MonoBehaviour
     public bool CanBePressed;
     public Key keyToPress;
     private bool isHit = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public RhythmMiniGame.LaneKeys allowedKeys;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-
-
     void Update()
     {
-        if(Keyboard.current[keyToPress].wasPressedThisFrame && CanBePressed)
+        //bool primaryPressed = Keyboard.current[allowedKeys.primaryKey].wasPressedThisFrame;
+        //bool alternatePressed = Keyboard.current[allowedKeys.alternateKey].wasPressedThisFrame;
+
+        //if ((primaryPressed || alternatePressed) && CanBePressed)
+        //{
+        //    isHit = true;
+        //    Destroy(gameObject);
+        //}
+        if (Keyboard.current[keyToPress].wasPressedThisFrame && CanBePressed)
         {
             isHit = true;
-            GameManager.Instance.NoteHit();
-            Destroy(gameObject);       
+            // GameManager.Instance.NoteHit();
+            Destroy(gameObject);
         }
 
         // Move arrow horizontally to the right
-        transform.position += Vector3.right * speed * Time.deltaTime;
+        transform.position += Vector3.down * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,8 +48,16 @@ public class ArrowBehavior : MonoBehaviour
         if (collision.CompareTag("Activator") && isHit == false)
         {
             CanBePressed = false;
-            GameManager.Instance.NoteMissed();
+        }
+
+        if (collision.CompareTag("Despawner") && isHit == false)
+        {
+            CanBePressed = false;
+            ConversationTimer.Instance.ReduceTime(0.5f);
+            Destroy(gameObject);
+           // GameManager.Instance.NoteMissed();
         }
 
     }
+
 }

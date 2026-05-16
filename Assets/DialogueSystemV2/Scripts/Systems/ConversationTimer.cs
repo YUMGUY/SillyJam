@@ -22,9 +22,12 @@ public class ConversationTimer : MonoBehaviour
     [SerializeField] private float _elapsed;
     private Coroutine _timerCoroutine;
 
-    [Header("Battle UI")]
-    [SerializeField] private GameObject battleBox;
-    [SerializeField] private GameObject playerHeart;
+    [Header("Rhythm Game")]
+    [SerializeField] private GameObject rhythmGameManager;
+    //[Header("Battle UI")]
+    //[SerializeField] private GameObject battleBox;
+    //[SerializeField] private GameObject playerHeart;
+
 
     public event Action<float> OnMiniGameStarted;
     /*For bettter visual effect later losing time*/
@@ -67,7 +70,15 @@ public class ConversationTimer : MonoBehaviour
         }
 
         IsRunning = false;
-        //HideTimer();
+
+        if (rhythmGameManager != null) rhythmGameManager.SetActive(false);
+
+        GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
+
+        foreach (GameObject arrow in arrows)
+        {
+            Destroy(arrow);
+        }
     }
 
     public void ReduceTime(float amount)
@@ -148,11 +159,8 @@ public class ConversationTimer : MonoBehaviour
 
     private void HandleDialogueEnded()
     {
-       // Debug.Log("running is:" + IsRunning);
-
         StopTimer();
-        if (battleBox != null) battleBox.SetActive(false);
-        if (playerHeart != null) playerHeart.SetActive(false);
+
         Debug.Log("Conversation Timer Actions Executed After Dialogue Ended");
 
        // HideTimer();
