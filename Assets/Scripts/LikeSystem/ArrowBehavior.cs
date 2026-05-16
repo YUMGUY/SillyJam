@@ -24,6 +24,8 @@ public class ArrowBehavior : MonoBehaviour
         //    isHit = true;
         //    Destroy(gameObject);
         //}
+
+        // TODO: Make particle system appear
         if (Keyboard.current[keyToPress].wasPressedThisFrame && CanBePressed)
         {
             isHit = true;
@@ -32,7 +34,7 @@ public class ArrowBehavior : MonoBehaviour
         }
 
         // Move arrow horizontally to the right
-        transform.position += Vector3.down * speed * Time.deltaTime;
+        transform.position += speed * Time.deltaTime * Vector3.down;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,6 +56,8 @@ public class ArrowBehavior : MonoBehaviour
         {
             CanBePressed = false;
             ConversationTimer.Instance.ReduceTime(0.5f);
+            if (AudioHub.Instance != null)
+                AudioHub.Instance.PlayBeatMissed();
             Destroy(gameObject);
            // GameManager.Instance.NoteMissed();
         }

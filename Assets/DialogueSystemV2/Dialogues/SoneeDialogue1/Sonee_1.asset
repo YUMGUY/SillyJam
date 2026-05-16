@@ -18,6 +18,8 @@ MonoBehaviour:
   nextNode: {fileID: 11400000, guid: 1a8016f3818f1a745b5ac18d27983e01, type: 2}
   preCommands:
   - {fileID: 11400000, guid: de0bac83e6476e2499faa993c27d0a8e, type: 2}
+  - {fileID: 11400000, guid: 03255f3d00fcba446811e36fc3f49b65, type: 2}
+  - {fileID: 11400000, guid: c1438751642ed1345a1f126ef318b8ce, type: 2}
   postCommands: []
   autoAdvanceDelay: 0.5
   isEndNode: 0

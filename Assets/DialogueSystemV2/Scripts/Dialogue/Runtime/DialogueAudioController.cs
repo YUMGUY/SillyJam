@@ -7,6 +7,8 @@ public class DialogueAudioController : MonoBehaviour, IAudioService
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource characterSource;
+
+    private float startingVolume;
     private void Awake()
     {
         AudioSource[] sources = GetComponents<AudioSource>();
@@ -15,10 +17,13 @@ public class DialogueAudioController : MonoBehaviour, IAudioService
 
         // third AudioSource = character
         //Debug.Log(sfxSource.priority); // testing
+
+        startingVolume = musicSource.volume;
     }
 
     public void PlayMusic(AudioClip clip)
     {
+        musicSource.volume = startingVolume;
         if (musicSource.clip == clip) return; // already playing this clip
 
         musicSource.clip = clip;
@@ -46,6 +51,11 @@ public class DialogueAudioController : MonoBehaviour, IAudioService
 
         StopMusic();
         musicSource.volume = startVolume; // reset volume for next time
+    }
+
+    public void StartFade(float duration)
+    {
+        StartCoroutine(FadeMusicOut(duration));
     }
 
     public void PlaySFX(AudioClip clip)

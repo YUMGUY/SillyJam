@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Sonee_ClosingC
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
-  text: You took quite the fall there! Are you alright?
+  text: "Okay as long as you don\u2019t got a concussion, I really gotta get back
+    to work. Get yourself checked out if you keep feeling fuzzy alright?"
   typingSpeed: 0.03
-  nextNode: {fileID: 0}
-  preCommands: []
+  nextNode: {fileID: 11400000, guid: bf73c940d3341844d857bc1bc282b073, type: 2}
+  preCommands:
+  - {fileID: 11400000, guid: 5bc03145e14ed8243be861a153b46184, type: 2}
   postCommands: []
-  autoAdvanceDelay: 0.5
+  autoAdvanceDelay: 1
   isEndNode: 0

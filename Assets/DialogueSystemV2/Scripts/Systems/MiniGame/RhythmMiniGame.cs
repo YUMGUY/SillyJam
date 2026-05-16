@@ -10,6 +10,8 @@ public class RhythmMiniGame : MonoBehaviour
         public Key primaryKey;   // e.g., Key.A
         public Key alternateKey; // e.g., Key.LeftArrow
     }
+    public LaneKeys test;
+
 
     [Header("Song Properties")]
     public float timeChange;
@@ -27,7 +29,7 @@ public class RhythmMiniGame : MonoBehaviour
     public float arrowSpeed = 4f;
     public float spawnInterval = 1f; // spawn every second by default
 
-
+    [SerializeField] private float timer = 0f;
     private Coroutine spawnRoutine;
     private Key[] keysToPress = { Key.A, Key.S, Key.W, Key.D };
 
@@ -38,7 +40,18 @@ public class RhythmMiniGame : MonoBehaviour
             new LaneKeys { primaryKey = Key.W, alternateKey = Key.UpArrow },    
             new LaneKeys { primaryKey = Key.D, alternateKey = Key.RightArrow }
         };
-    [SerializeField] private float timer = 0f;
+    
+    public static RhythmMiniGame Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     void Update()
     {

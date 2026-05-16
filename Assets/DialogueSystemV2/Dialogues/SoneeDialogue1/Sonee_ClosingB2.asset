@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a52634355a0a897488d0a9d289ed7601, type: 3}
-  m_Name: Sonee_ClosingB
+  m_Name: Sonee_ClosingB2
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
-  speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
-  text: "Good luck buddy ol pal. With the skeletons. And the portals. And\u2026 Schemes\u2026"
+  speaker: {fileID: 11400000, guid: 821a7f7600215144bb901dd2ee872720, type: 2}
+  text: "NYEHEHEHE! (oh the potential I once had in my youth now wafted into the
+    ozone layer\u2026)"
   typingSpeed: 0.03
-  nextNode: {fileID: 11400000, guid: fc02e720c530edb49bdb6ea11609a046, type: 2}
+  nextNode: {fileID: 0}
   preCommands:
   - {fileID: 11400000, guid: 5bc03145e14ed8243be861a153b46184, type: 2}
   postCommands: []
   autoAdvanceDelay: 1
-  isEndNode: 0
+  isEndNode: 1

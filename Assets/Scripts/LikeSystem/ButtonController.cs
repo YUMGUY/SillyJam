@@ -14,14 +14,15 @@ public class ButtonController : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current[keyToPress].wasPressedThisFrame)
-        {
-            spriteRenderer.color = Color.white;
-        }
 
-        if (Keyboard.current[keyToPress].wasReleasedThisFrame)
-        {
-            spriteRenderer.color = Color.clear;
-        }
+        //if (Keyboard.current[keyToPress].wasPressedThisFrame)
+        //{
+        //   // spriteRenderer.color = Color.white;
+        //}
+
+        //if (Keyboard.current[keyToPress].wasReleasedThisFrame)
+        //{
+        //   // spriteRenderer.color = Color.clear;
+        //}
     }
 }

@@ -29,6 +29,11 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
     [SerializeField] private Sprite npcCorrectSprite;
     [SerializeField] private Sprite npcIncorrectSprite;
 
+    [Header("Reaction SFX")]
+    [SerializeField] private AudioClip correctSFX;
+    [SerializeField] private AudioClip incorrectSFX;
+
+
     [Header("Reaction Duration")]
     [SerializeField] private float reactionDuration = 2f;
 
@@ -140,11 +145,13 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
         {
             _ctx.SpriteController.ChangeEmotion(playerCharacter, playerCorrectSprite);
             _ctx.SpriteController.ChangeEmotion(npcCharacter, npcCorrectSprite);
+            _ctx.AudioService.PlaySFX(correctSFX);
         }
         else
         {
             _ctx.SpriteController.ChangeEmotion(playerCharacter, playerIncorrectSprite);
             _ctx.SpriteController.ChangeEmotion(npcCharacter, npcIncorrectSprite);
+            _ctx.AudioService.PlaySFX(incorrectSFX);
         }
 
         // Hold reaction for duration
@@ -152,7 +159,6 @@ public class DialogueUIController : MonoBehaviour, IDialogueUIController
 
         // Reset player back to default sprite, npc can stay
         _ctx.SpriteController.ChangeEmotion(playerCharacter, playerCharacter.defaultSprite);
-       // _ctx.SpriteController.ChangeEmotion(npcCharacter, npcCharacter.defaultSprite);
     }
 
 

@@ -229,6 +229,150 @@ MonoBehaviour:
   playerSlot: {fileID: 278730903}
   npcSlot: {fileID: 1355059030}
   playerCharacter: {fileID: 11400000, guid: 821a7f7600215144bb901dd2ee872720, type: 2}
+--- !u!1 &83745606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 83745607}
+  - component: {fileID: 83745609}
+  - component: {fileID: 83745608}
+  m_Layer: 0
+  m_Name: Game Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &83745607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83745606}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.82797, y: 1.22291, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &83745608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83745606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d92875deb376ccd459586176ef618c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioHub
+  sfxGameSource: {fileID: 83745609}
+  beatMissedSFX: {fileID: 8300000, guid: 2b284a86ccf78844f85462fd0c82a953, type: 3}
+--- !u!82 &83745609
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83745606}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &128707125
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,9 +664,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a150fba98d3b34f96e583ad18a38c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RhythmMiniGame
-  timeChange: 22
-  BPM: 100
-  beatRate: 0
+  test:
+    primaryKey: 0
+    alternateKey: 0
+  timeChange: 30
+  BPM: 120
+  beatRate: 0.25
   hasTempoChanged: 0
   isRunning: 0
   arrow: {fileID: 8666916561371551337, guid: fdee78005731afd41ae5196ed7964c1e, type: 3}
@@ -537,7 +684,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 90b7f93715c2aac4c871a672e83364ea, type: 3}
   - {fileID: 21300000, guid: 695b4406c8a0ad24fadd7ae69d3ae71d, type: 3}
   arrowSpeed: 4
-  spawnInterval: 1
+  spawnInterval: 2
   timer: 0
 --- !u!4 &220195000
 Transform:
@@ -1309,7 +1456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &282915910
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3096,7 +3243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &857136529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3197,6 +3344,7 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 1f50bd9da394e814783fda68090d6a05, type: 2}
+    - {fileID: 11400000, guid: 7ad9dfbe0df314342a1a8861da47efb8, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -3221,6 +3369,20 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2022319800}
+          m_TargetAssemblyTypeName: DialogueAudioController, Assembly-CSharp
+          m_MethodName: StartFade
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0.45
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -3917,7 +4079,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Test arrows
+  m_text: Disable intro
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4284,13 +4446,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-
-'
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 159eea12edc2fbd44b454e708ca2bacf, type: 2}
+  m_sharedMaterial: {fileID: -2580567851340725759, guid: 159eea12edc2fbd44b454e708ca2bacf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4314,8 +4473,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4438,7 +4597,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 24.3}
+  m_AnchoredPosition: {x: 10, y: 18}
   m_SizeDelta: {x: 435.51, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1319959008
@@ -4463,14 +4622,14 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 159eea12edc2fbd44b454e708ca2bacf, type: 2}
+  m_sharedMaterial: {fileID: -2580567851340725759, guid: 159eea12edc2fbd44b454e708ca2bacf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4281771263
   m_fontColor: {r: 1, g: 0.6431373, b: 0.21176471, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4488,8 +4647,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5673,7 +5832,7 @@ GameObject:
   - component: {fileID: 1673580856}
   - component: {fileID: 1673580855}
   m_Layer: 5
-  m_Name: Test RhythmGame Button
+  m_Name: DisableIntroCG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5743,10 +5902,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 220194999}
-        m_TargetAssemblyTypeName: RhythmMiniGame, Assembly-CSharp
-        m_MethodName: StartSpawning
-        m_Mode: 1
+      - m_Target: {fileID: 857136528}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5857,6 +6016,9 @@ MonoBehaviour:
   entryNode: {fileID: 11400000, guid: a88b60cc789b1e546977179aae03c0af, type: 2}
   dialogueGraph: {fileID: 11400000, guid: a99cc8cee9f8f0942be855c7f4be8ad9, type: 2}
   entryClosingDialogue: {fileID: 11400000, guid: a11bff0f3cb55dd4da436be7f2f722df, type: 2}
+  goodCloseDialogue: {fileID: 11400000, guid: 3bc5f687ef5702f48bd4f2df74f6736e, type: 2}
+  badCloseDialogue: {fileID: 11400000, guid: 47346ed641d8ecd46bbb75642c5fff63, type: 2}
+  mediocreCloseDialogue: {fileID: 11400000, guid: 0da0dcf92e2f62e4b8121c7dc15224d5, type: 2}
   hasEnded: 0
 --- !u!114 &1700034740
 MonoBehaviour:
@@ -6742,7 +6904,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 8792d2d0d6d191e4f8e12d769c2ef15f, type: 3}
+  m_Resource: {fileID: 8300000, guid: f40db30588f158c478934991c6593203, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -7173,6 +7335,8 @@ MonoBehaviour:
   playerIncorrectSprite: {fileID: 4082064224251181547, guid: 5e6284831fa76934a960f316425fb779, type: 3}
   npcCorrectSprite: {fileID: 1875980263407506034, guid: 513e3ea25c6d13147925b6d666eebd12, type: 3}
   npcIncorrectSprite: {fileID: 7371581467320048915, guid: 4b0695ca227d0f347b4f881e96199bc5, type: 3}
+  correctSFX: {fileID: 8300000, guid: 13d6cbdd6bce40e48aee08dbccdd0a27, type: 3}
+  incorrectSFX: {fileID: 8300000, guid: 5e675011b1cf3b041b36e1f15dfd1f47, type: 3}
   reactionDuration: 2
 --- !u!114 &2110050450
 MonoBehaviour:
@@ -7367,15 +7531,16 @@ SceneRoots:
   - {fileID: 714040883}
   - {fileID: 1925109543}
   - {fileID: 922234304}
-  - {fileID: 1059323174}
   - {fileID: 730950436}
   - {fileID: 857136532}
+  - {fileID: 1059323174}
   - {fileID: 128707126}
   - {fileID: 64941139}
   - {fileID: 634378435}
   - {fileID: 151137923}
   - {fileID: 1710093656}
   - {fileID: 220195000}
+  - {fileID: 83745607}
   - {fileID: 927937373}
   - {fileID: 1011236471}
   - {fileID: 1376185233}

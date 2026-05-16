@@ -28,7 +28,7 @@ public class DialogueWriter : MonoBehaviour, IDialogueWriter
         // Set speaker name and color
         if (speakerNameText != null && speaker != null)
         {
-            speakerNameText.text = speaker.characterName;
+          //  speakerNameText.text = speaker.characterName;
             
         }
 

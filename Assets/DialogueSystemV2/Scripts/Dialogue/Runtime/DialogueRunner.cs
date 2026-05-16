@@ -11,6 +11,10 @@ public class DialogueRunner : MonoBehaviour
     [SerializeField] private DialogueGraph dialogueGraph;
     [SerializeField] private DialogueNode entryClosingDialogue;
 
+    [Header("Endings")]
+    [SerializeField] private DialogueNode goodCloseDialogue;
+    [SerializeField] private DialogueNode badCloseDialogue;
+    [SerializeField] private DialogueNode mediocreCloseDialogue;
     // closingbad, closing mediocre, closing good DialogeNode , that is chossen by the strikesystem function
     public bool hasEnded = false;
     private void Awake()
@@ -65,6 +69,8 @@ public class DialogueRunner : MonoBehaviour
 
         Debug.Log("Dialogue force ended early by the Conversation Timer or by Strike System");
         _ctx.UI.ForceStop();
+
+        // TODO : Fade out and play new music
         _ctx.AudioService.StopMusic();
         DialogueEvents.DialogueEnded();
 
@@ -85,6 +91,8 @@ public class DialogueRunner : MonoBehaviour
 
         hasEnded = true;
         Debug.Log("<color=green>Dialogue finished overall. Finished naturally!</color>");
+       
+        // TODO : Fade out and play new music
         _ctx.AudioService.StopMusic();
         DialogueEvents.DialogueEnded();
         // dialgoue ends naturally (which means Mediocre ending achieved????), conversation timer and battle box stops => ending dialogue starts => ending dialogue ends and starts respective Timeline
@@ -96,10 +104,20 @@ public class DialogueRunner : MonoBehaviour
     // Handle end
     private void StartClosingDialogue()
     {
-        if (entryClosingDialogue == null)
+        DialogueEndResult result = _ctx.StrikeSystem.EvaluateEnding();
+
+        switch (result)
         {
-            Debug.LogWarning("No closing dialogue assigned");
-            return;
+            case DialogueEndResult.Good:
+                entryClosingDialogue = goodCloseDialogue;
+                break;
+            case DialogueEndResult.Bad:
+                entryClosingDialogue = badCloseDialogue;
+                break;
+            case DialogueEndResult.Mediocre:
+                entryClosingDialogue = mediocreCloseDialogue;
+                break;
+
         }
 
         Debug.Log("Running closing dialogue...");
