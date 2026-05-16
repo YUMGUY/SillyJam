@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Sonee_ClosingA2
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 821a7f7600215144bb901dd2ee872720, type: 2}
-  text: "R-really? Drinks on the weekend with friends?I MEAN- yeah! That\u2019d be
-    swell!"
+  text: R-really? Drinks on the weekend with friends? I mean - yeah! That'd be swell!
   typingSpeed: 0.03
   nextNode: {fileID: 0}
   preCommands: []

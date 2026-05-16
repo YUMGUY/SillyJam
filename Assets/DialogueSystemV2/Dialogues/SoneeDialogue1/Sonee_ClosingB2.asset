@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Sonee_ClosingB2
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 821a7f7600215144bb901dd2ee872720, type: 2}
-  text: "NYEHEHEHE! (oh the potential I once had in my youth now wafted into the
-    ozone layer\u2026)"
+  text: NYEHEHEHE! (oh the potential I once had in my youth now wafted into the ozone
+    layer...)
   typingSpeed: 0.03
   nextNode: {fileID: 0}
   preCommands:

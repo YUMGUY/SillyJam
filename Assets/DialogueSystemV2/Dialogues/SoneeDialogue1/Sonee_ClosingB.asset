@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sonee_ClosingB
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
-  text: "Good luck buddy ol pal. With the skeletons. And the portals. And\u2026 Schemes\u2026"
+  text: Good luck buddy ol pal. With the skeletons. And the portals. And... Schemes...
   typingSpeed: 0.03
   nextNode: {fileID: 11400000, guid: fc02e720c530edb49bdb6ea11609a046, type: 2}
   preCommands:

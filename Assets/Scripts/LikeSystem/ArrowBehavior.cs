@@ -16,24 +16,7 @@ public class ArrowBehavior : MonoBehaviour
 
     void Update()
     {
-        //bool primaryPressed = Keyboard.current[allowedKeys.primaryKey].wasPressedThisFrame;
-        //bool alternatePressed = Keyboard.current[allowedKeys.alternateKey].wasPressedThisFrame;
-
-        //if ((primaryPressed || alternatePressed) && CanBePressed)
-        //{
-        //    isHit = true;
-        //    Destroy(gameObject);
-        //}
-
-        // TODO: Make particle system appear
-        if (Keyboard.current[keyToPress].wasPressedThisFrame && CanBePressed)
-        {
-            isHit = true;
-            // GameManager.Instance.NoteHit();
-            Destroy(gameObject);
-        }
-
-        // Move arrow horizontally to the right
+        // Move arrow down
         transform.position += speed * Time.deltaTime * Vector3.down;
     }
 
@@ -42,6 +25,8 @@ public class ArrowBehavior : MonoBehaviour
         if(collision.CompareTag("Activator"))
         {
             CanBePressed = true;
+            // Tell the manager: "I'm ready to be hit!"
+            RhythmMiniGame.Instance.RegisterArrow(keyToPress, this);
         }
     }
 
@@ -50,6 +35,8 @@ public class ArrowBehavior : MonoBehaviour
         if (collision.CompareTag("Activator") && isHit == false)
         {
             CanBePressed = false;
+            // Tell the manager: "I'm leaving the zone unhit"
+            RhythmMiniGame.Instance.UnregisterArrow(keyToPress, this);
         }
 
         if (collision.CompareTag("Despawner") && isHit == false)
@@ -59,9 +46,21 @@ public class ArrowBehavior : MonoBehaviour
             if (AudioHub.Instance != null)
                 AudioHub.Instance.PlayBeatMissed();
             Destroy(gameObject);
-           // GameManager.Instance.NoteMissed();
         }
-
     }
 
+    // Manager calls this when input is detected for this arrow
+    public void HandleHit()
+    {
+        if (isHit) return;
+
+        isHit = true;
+        
+        // Ensure we unregister before destroying
+        RhythmMiniGame.Instance.UnregisterArrow(keyToPress, this);
+        // Trigger the particle system in the manager based on the lane key
+        RhythmMiniGame.Instance.PlayHitEffect(keyToPress);
+
+        Destroy(gameObject);
+    }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class RhythmMiniGame : MonoBehaviour
@@ -12,7 +13,6 @@ public class RhythmMiniGame : MonoBehaviour
     }
     public LaneKeys test;
 
-
     [Header("Song Properties")]
     public float timeChange;
     public float BPM;
@@ -20,14 +20,15 @@ public class RhythmMiniGame : MonoBehaviour
     public bool hasTempoChanged;
     public bool isRunning;
 
-    // put tempo and bpm formula
-    // moveo nto next speed at certain time
     [Header("Arrow Properties")]
     public GameObject arrow;
     public Transform[] spawnTransforms; // parallel array with arrow sprites
     public Sprite[] arrowSprites;
     public float arrowSpeed = 4f;
     public float spawnInterval = 1f; // spawn every second by default
+
+    [Header("VFX")]
+    public ParticleSystem[] hitParticles;
 
     [SerializeField] private float timer = 0f;
     private Coroutine spawnRoutine;
@@ -43,6 +44,9 @@ public class RhythmMiniGame : MonoBehaviour
     
     public static RhythmMiniGame Instance { get; private set; }
 
+    // New: Dictionary to track active, pressable arrows by key
+    private Dictionary<Key, List<ArrowBehavior>> activeArrows = new Dictionary<Key, List<ArrowBehavior>>();
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -51,6 +55,12 @@ public class RhythmMiniGame : MonoBehaviour
             return;
         }
         Instance = this;
+
+        // Initialize the dictionary for all possible keys
+        foreach (Key key in keysToPress)
+        {
+            activeArrows[key] = new List<ArrowBehavior>();
+        }
     }
 
     void Update()
@@ -63,8 +73,52 @@ public class RhythmMiniGame : MonoBehaviour
             hasTempoChanged = true;
             arrowSpeed *= 1.25f;
         }
+
+        // Centralized input handling: Check all tracked keys
+        foreach (var entry in activeArrows)
+        {
+            Key key = entry.Key;
+            
+            // If the key was pressed, trigger the hit logic on the oldest active arrow
+            if (Keyboard.current[key].wasPressedThisFrame && entry.Value.Count > 0)
+            {
+                ArrowBehavior hitArrow = entry.Value[0];
+                hitArrow.HandleHit();
+            }
+        }
     }
 
+    // Registration methods called by ArrowBehavior
+    public void RegisterArrow(Key key, ArrowBehavior arrow)
+    {
+        if (activeArrows.ContainsKey(key))
+            activeArrows[key].Add(arrow);
+    }
+
+    public void UnregisterArrow(Key key, ArrowBehavior arrow)
+    {
+        if (activeArrows.ContainsKey(key))
+            activeArrows[key].Remove(arrow);
+    }
+
+    public void PlayHitEffect(Key key)
+    {
+        // Find the lane index for the key
+        int index = -1;
+        for (int i = 0; i < keysToPress.Length; i++)
+        {
+            if (keysToPress[i] == key)
+            {
+                index = i;
+                break;
+            }
+        }
+        // If the index is valid and the particle system is assigned, play it
+        if (index >= 0 && index < hitParticles.Length && hitParticles[index] != null)
+        {
+            hitParticles[index].Play();
+        }
+    }
 
     public void SpawnArrow(Vector3 spawnPosition, Key key, Sprite sprite)
     {

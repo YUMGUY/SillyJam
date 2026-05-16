@@ -25,16 +25,9 @@ public class DialogueWriter : MonoBehaviour, IDialogueWriter
         else
             dialogueText.text = string.Empty;
 
-        // Set speaker name and color
-        if (speakerNameText != null && speaker != null)
-        {
-          //  speakerNameText.text = speaker.characterName;
-            
-        }
-
         // Set text color
         if (speaker != null)
-            dialogueText.color = speaker.textColor;
+            targetText.color = speaker.textColor;
 
         // Typewriter
         foreach (char c in text)
@@ -48,7 +41,6 @@ public class DialogueWriter : MonoBehaviour, IDialogueWriter
             targetText.text += c;
             yield return new WaitForSeconds(typingSpeed);
         }
-        //Debug.Log("Finished writing dialogue text");
     }
 
     public void Skip() => _skipRequested = true;

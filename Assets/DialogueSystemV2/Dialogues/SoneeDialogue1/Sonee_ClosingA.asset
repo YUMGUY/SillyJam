@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Sonee_ClosingA
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
-  text: "Hey I gotta get back to work soon, but I\u2019d be jazzed to hang out later!
-    Me n some buds gonna go out for drinks if you wanna join?"
+  text: Hey I gotta get back to work soon, but I'd be jazzed to hang out later! Me
+    n' some buds are gonna go out for drinks if you wanna join?
   typingSpeed: 0.03
   nextNode: {fileID: 11400000, guid: 0c8cf194b92004a4697a8a61eadb718a, type: 2}
   preCommands:
