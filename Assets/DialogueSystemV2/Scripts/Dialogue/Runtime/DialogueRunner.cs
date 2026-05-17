@@ -42,7 +42,7 @@ public class DialogueRunner : MonoBehaviour
     // Called by Signal of the Intro CG Canvas
     public void TriggerDialogue()
     {
-        Debug.Log("<color=green>Dialogue triggered by Intro CG</color>");
+    //    Debug.Log("<color=green>Dialogue triggered by Intro CG</color>");
         if (dialogueGraph.entryNode != null)
             StartDialogue(dialogueGraph.entryNode);
     }
@@ -67,7 +67,7 @@ public class DialogueRunner : MonoBehaviour
         }
 
 
-        Debug.Log("Dialogue force ended early by the Conversation Timer or by Strike System");
+     //   Debug.Log("Dialogue force ended early by the Conversation Timer or by Strike System");
         _ctx.UI.ForceStop();
 
         // TODO : Fade out and play new music
@@ -90,7 +90,7 @@ public class DialogueRunner : MonoBehaviour
         if (hasEnded) yield break; // protect against unlikely race condition where forceenddialogue is called exactly at the same frame
 
         hasEnded = true;
-        Debug.Log("<color=green>Dialogue finished overall. Finished naturally!</color>");
+      //  Debug.Log("<color=green>Dialogue finished overall. Finished naturally!</color>");
        
         // TODO : Fade out and play new music
         _ctx.AudioService.StopMusic();
@@ -120,7 +120,7 @@ public class DialogueRunner : MonoBehaviour
 
         }
 
-        Debug.Log("Running closing dialogue...");
+     //   Debug.Log("Running closing dialogue...");
         _ctx.UI.ShowPlayerDialogueBox();
         closingDialogueRunnerWorker = StartCoroutine(RunClosingDialogue(entryClosingDialogue));
     }
@@ -132,9 +132,9 @@ public class DialogueRunner : MonoBehaviour
             node = node.GetNext(_ctx);
         }
 
-        Debug.Log("<color=cyan>Closing dialogue finished: waiting 2 seconds...</color>");
+        Debug.Log("<color=cyan>Closing dialogue finished: waiting 1 second...</color>");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         Debug.Log("Now the closing Timeline (cg) will play");
         DialogueEndResult result = _ctx.StrikeSystem.EvaluateEnding();

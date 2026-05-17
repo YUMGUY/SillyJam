@@ -49,6 +49,7 @@ public class LineNode : DialogueNode
 
             // Final node — log immediately, no wait
             Debug.Log("Dialogue finished at End Node: " + name);
+            yield return new WaitForSeconds(autoAdvanceDelay);
             yield break;
         }
 

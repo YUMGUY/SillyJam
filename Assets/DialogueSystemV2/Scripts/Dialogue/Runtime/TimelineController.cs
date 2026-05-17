@@ -41,7 +41,7 @@ public class TimelineController : MonoBehaviour
     {
         if (badEndingTimeline != null)
         {
-            Debug.Log("Tested bad ending cg");
+           // Debug.Log("Tested bad ending cg");
             badEndingTimeline.Play();
         }
            

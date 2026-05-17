@@ -20,5 +20,5 @@ MonoBehaviour:
   preCommands:
   - {fileID: 11400000, guid: 5bc03145e14ed8243be861a153b46184, type: 2}
   postCommands: []
-  autoAdvanceDelay: 1
+  autoAdvanceDelay: 0
   isEndNode: 1

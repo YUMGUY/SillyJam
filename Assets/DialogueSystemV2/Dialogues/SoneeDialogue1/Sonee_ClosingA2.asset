@@ -18,5 +18,5 @@ MonoBehaviour:
   nextNode: {fileID: 0}
   preCommands: []
   postCommands: []
-  autoAdvanceDelay: 1
+  autoAdvanceDelay: 0
   isEndNode: 1

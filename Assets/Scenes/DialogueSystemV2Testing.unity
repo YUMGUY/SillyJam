@@ -815,7 +815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &259979845
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5121,7 +5121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1379700633
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5787,7 +5787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1616513969
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6054,12 +6054,12 @@ GameObject:
   - component: {fileID: 1673580856}
   - component: {fileID: 1673580855}
   m_Layer: 5
-  m_Name: DisableIntroCG
+  m_Name: DisableIntroCG button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1673580854
 RectTransform:
   m_ObjectHideFlags: 0

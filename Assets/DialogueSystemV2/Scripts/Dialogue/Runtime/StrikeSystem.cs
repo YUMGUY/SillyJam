@@ -105,7 +105,7 @@ public class StrikeSystem : MonoBehaviour
         else
             result = DialogueEndResult.Mediocre;
 
-        Debug.Log("Dialogue result: " + result);
+     //   Debug.Log("Dialogue result: " + result);
         return result;
     }
 }
