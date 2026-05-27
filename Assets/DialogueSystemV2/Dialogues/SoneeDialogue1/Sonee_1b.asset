@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
   text: Alriiiight.... So you don't have a concussion then?
-  typingSpeed: 0.03
+  typingSpeed: 0.025
   nextNode: {fileID: 11400000, guid: 5ae64f225a2079e44bd57d68cc788aeb, type: 2}
   preCommands: []
   postCommands: []
-  autoAdvanceDelay: 0.5
+  autoAdvanceDelay: 1.5
   isEndNode: 0

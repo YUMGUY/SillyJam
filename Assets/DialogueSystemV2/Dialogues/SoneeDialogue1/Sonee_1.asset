@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
   text: You took quite the fall there! Are you alright?
-  typingSpeed: 0.03
+  typingSpeed: 0.025
   nextNode: {fileID: 11400000, guid: 1a8016f3818f1a745b5ac18d27983e01, type: 2}
   preCommands:
   - {fileID: 11400000, guid: de0bac83e6476e2499faa993c27d0a8e, type: 2}
   - {fileID: 11400000, guid: 03255f3d00fcba446811e36fc3f49b65, type: 2}
   - {fileID: 11400000, guid: c1438751642ed1345a1f126ef318b8ce, type: 2}
   postCommands: []
-  autoAdvanceDelay: 0.5
+  autoAdvanceDelay: 1.5
   isEndNode: 0

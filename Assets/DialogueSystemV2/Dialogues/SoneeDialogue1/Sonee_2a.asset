@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LineNode
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
   text: Well whaddya know! Same here!
-  typingSpeed: 0.03
+  typingSpeed: 0.025
   nextNode: {fileID: 11400000, guid: 11a6fbf3846c90d4dbd0550fefccdef7, type: 2}
   preCommands: []
   postCommands: []
-  autoAdvanceDelay: 0.5
+  autoAdvanceDelay: 1.5
   isEndNode: 0

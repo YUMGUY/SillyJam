@@ -15,10 +15,10 @@ MonoBehaviour:
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
   text: Hey I gotta get back to work soon, but I'd be jazzed to hang out later! Me
     n' some buds are gonna go out for drinks if you wanna join?
-  typingSpeed: 0.03
+  typingSpeed: 0.025
   nextNode: {fileID: 11400000, guid: 0c8cf194b92004a4697a8a61eadb718a, type: 2}
   preCommands:
   - {fileID: 11400000, guid: 5bc03145e14ed8243be861a153b46184, type: 2}
   postCommands: []
-  autoAdvanceDelay: 1
+  autoAdvanceDelay: 1.5
   isEndNode: 0

@@ -15,9 +15,9 @@ MonoBehaviour:
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
   text: "That fall might\u2019ve hit your head harder than I thought. Are you really
     okay?"
-  typingSpeed: 0.03
+  typingSpeed: 0.025
   nextNode: {fileID: 11400000, guid: ba89e28d181849c47ab11f859099701a, type: 2}
   preCommands: []
   postCommands: []
-  autoAdvanceDelay: 0.5
+  autoAdvanceDelay: 1.5
   isEndNode: 0

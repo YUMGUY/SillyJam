@@ -15,10 +15,10 @@ MonoBehaviour:
   speaker: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
   text: Okay as long as you don't got a concussion, I really gotta get back to work.
     Get yourself checked out if you keep feeling fuzzy alright?
-  typingSpeed: 0.03
+  typingSpeed: 0.025
   nextNode: {fileID: 11400000, guid: bf73c940d3341844d857bc1bc282b073, type: 2}
   preCommands:
   - {fileID: 11400000, guid: 5bc03145e14ed8243be861a153b46184, type: 2}
   postCommands: []
-  autoAdvanceDelay: 1
+  autoAdvanceDelay: 1.5
   isEndNode: 0
