@@ -136,7 +136,7 @@ public class DialogueRunner : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        Debug.Log("Now the closing Timeline (cg) will play");
+        //Debug.Log("Now the closing Timeline (cg) will play");
         DialogueEndResult result = _ctx.StrikeSystem.EvaluateEnding();
         DialogueEvents.ClosingDialogueEnded(result);
     }
