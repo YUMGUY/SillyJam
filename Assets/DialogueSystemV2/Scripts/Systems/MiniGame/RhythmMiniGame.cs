@@ -11,12 +11,18 @@ public class RhythmMiniGame : MonoBehaviour
         public Key primaryKey;   // e.g., Key.A
         public Key alternateKey; // e.g., Key.LeftArrow
     }
-    public LaneKeys test;
+    private LaneKeys[] lanes = new LaneKeys[]
+    {
+            new LaneKeys { primaryKey = Key.A, alternateKey = Key.LeftArrow},
+            new LaneKeys { primaryKey = Key.S, alternateKey = Key.DownArrow },
+            new LaneKeys { primaryKey = Key.W, alternateKey = Key.UpArrow },
+            new LaneKeys { primaryKey = Key.D, alternateKey = Key.RightArrow }
+    };
 
     [Header("Song Properties")]
     public float timeChange;
     public float BPM;
-    public float beatRate = 1f;
+    public float beatRate = 1f; // overriden by inspector
     public bool hasTempoChanged;
     public bool isRunning;
 
@@ -34,13 +40,7 @@ public class RhythmMiniGame : MonoBehaviour
     private Coroutine spawnRoutine;
     private Key[] keysToPress = { Key.A, Key.S, Key.W, Key.D };
 
-    private LaneKeys[] lanes = new LaneKeys[]
-        {
-            new LaneKeys { primaryKey = Key.A, alternateKey = Key.LeftArrow},  
-            new LaneKeys { primaryKey = Key.S, alternateKey = Key.DownArrow },  
-            new LaneKeys { primaryKey = Key.W, alternateKey = Key.UpArrow },    
-            new LaneKeys { primaryKey = Key.D, alternateKey = Key.RightArrow }
-        };
+
     
     public static RhythmMiniGame Instance { get; private set; }
 
@@ -70,8 +70,9 @@ public class RhythmMiniGame : MonoBehaviour
 
         if (timer >= timeChange && !hasTempoChanged)
         {
-            hasTempoChanged = true;
             arrowSpeed *= 1.25f;
+            beatRate *= 1.25f;
+            hasTempoChanged = true;
         }
 
         // Centralized input handling: Check all tracked keys
@@ -103,16 +104,7 @@ public class RhythmMiniGame : MonoBehaviour
 
     public void PlayHitEffect(Key key)
     {
-        // Find the lane index for the key
-        int index = -1;
-        for (int i = 0; i < keysToPress.Length; i++)
-        {
-            if (keysToPress[i] == key)
-            {
-                index = i;
-                break;
-            }
-        }
+        int index = System.Array.IndexOf(keysToPress, key);
         // If the index is valid and the particle system is assigned, play it
         if (index >= 0 && index < hitParticles.Length && hitParticles[index] != null)
         {
@@ -146,20 +138,18 @@ public class RhythmMiniGame : MonoBehaviour
 
     IEnumerator SpawnArrowsRandomly()
     {
-        float spawnInterval_ = (60f / BPM) / beatRate;
-
         while (true)
         {
-            
+            // TODO: Map to json of arrows 
             // Pick a random spawn transform
             int index = Random.Range(0, spawnTransforms.Length);
             Transform spawnPoint = spawnTransforms[index];
             Key key = keysToPress[index];
-            LaneKeys laneKeyData = lanes[index];
             Sprite spriteToUse = arrowSprites[index];
             SpawnArrow(spawnPoint.position, key, spriteToUse);
 
-            yield return new WaitForSeconds(spawnInterval);
+            //LaneKeys laneKeyData = lanes[index];
+            yield return new WaitForSeconds(60f / BPM / beatRate);
         }
     }
 }
