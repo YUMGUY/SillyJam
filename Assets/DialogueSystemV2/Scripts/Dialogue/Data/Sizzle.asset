@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Sizzle
   textPlate: {fileID: 0}
   defaultCharacterImage: {fileID: 0}
-  defaultSprite: {fileID: 6180210142172037513, guid: c897d5ac0af1de14183094d16ea9a21e, type: 3}
+  defaultSprite: {fileID: 21300000, guid: 0deae7c3497702c47bfa617358c3e039, type: 3}
   nameSourceImage: {fileID: 0}
   textColor: {r: 1, g: 0.6431373, b: 0.21176471, a: 1}
   voiceBlip: {fileID: 0}

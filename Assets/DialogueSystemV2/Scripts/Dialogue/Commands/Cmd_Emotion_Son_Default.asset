@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Cmd_Emotion_Son_Default
   m_EditorClassIdentifier: Assembly-CSharp::ChangeEmotionCommand
   character: {fileID: 11400000, guid: 39d76a35733ab8d419b767930cac358a, type: 2}
-  emotion: {fileID: 21300000, guid: 51403c19ad1ddfa4d9048886c09486d2, type: 3}
+  emotion: {fileID: 21300000, guid: 2ff2613af36fc654eb0024b5967b6939, type: 3}

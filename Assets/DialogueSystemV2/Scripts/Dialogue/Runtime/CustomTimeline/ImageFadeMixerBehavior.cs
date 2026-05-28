@@ -40,8 +40,8 @@ public class ImageFadeMixerBehaviour : PlayableBehaviour
         // Apply the final color
         Color c = targetImage.color;
 
-        // If totalWeight is 1.0, totalAlpha is exactly what you expect.
-        // If totalWeight is 0, we don't apply anything to avoid glitches.
+        // If totalWeight is 1.0, totalAlpha is expected.
+        // If totalWeight is 0, don't apply anything to avoid glitches.
         if (totalWeight > 0)
         {
             c.a = totalAlpha;
